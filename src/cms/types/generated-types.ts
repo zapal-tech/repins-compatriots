@@ -346,6 +346,10 @@ export interface Settings {
   id: number;
   email: string;
   phone: string;
+  viberUrl: string;
+  whatsappUrl: string;
+  instagramUrl: string;
+  facebookUrl: string;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
