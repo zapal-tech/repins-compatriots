@@ -1,0 +1,14 @@
+{
+  "recommendations": [
+    "artdiniz.quitcontrol-vscode",
+    "bradlc.vscode-tailwindcss",
+    "dbaeumer.vscode-eslint",
+    "dotenv.dotenv-vscode",
+    "eamodio.gitlens",
+    "esbenp.prettier-vscode",
+    "naumovs.color-highlight",
+    "streetsidesoftware.code-spell-checker",
+    "streetsidesoftware.code-spell-checker-ukrainian",
+    "tombonnike.vscode-status-bar-format-toggle"
+  ]
+}

@@ -1,0 +1,41 @@
+import { GroupField, TextField } from 'payload';
+
+import { ButtonProps } from '@app/components/Button';
+
+import { Collection } from '@cms/types';
+import { Page } from '@cms/types/generated-types';
+
+export enum LinkType {
+  Internal = 'internal',
+  Custom = 'custom',
+}
+
+export type LinkAppearance = Required<ButtonProps>['style'] | 'default';
+
+export type LinkAppearanceOption = {
+  label: string | Record<string, string>;
+  value: LinkAppearance;
+};
+
+export type LinkOverrides = Omit<Partial<TextField>, 'type'>;
+
+export type LinkField = (
+  options?: {
+    appearances?: LinkAppearance[] | false;
+    disableLabel?: boolean;
+  } & LinkOverrides,
+) => GroupField;
+
+export type LinkData = {
+  appearance?: LinkAppearance;
+  newTab?: boolean;
+  noFollow?: boolean;
+  label?: string | null;
+  doc?: {
+    relationTo: Collection | string;
+    value: Page | number;
+  } | null;
+  type?: LinkType | string;
+  url?: string | null;
+  // locale?: Locale | string;
+};
