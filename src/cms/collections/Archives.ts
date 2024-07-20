@@ -7,6 +7,26 @@ export const Archives: CollectionConfig = {
   labels: CollectionLabel.Archives,
   admin: {
     group: AdminPanelGroup.General,
+    useAsTitle: 'name',
   },
-  fields: [],
+  fields: [
+    {
+      name: 'shortName',
+      type: 'text',
+      label: {
+        en: 'Short Name',
+        uk: 'Коротка назва',
+      },
+      required: true,
+    },
+    {
+      name: 'name',
+      type: 'text',
+      label: {
+        en: 'Name',
+        uk: 'назва',
+      },
+      required: true,
+    },
+  ],
 };
