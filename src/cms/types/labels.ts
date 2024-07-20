@@ -101,6 +101,16 @@ export const CollectionLabel: Record<keyof typeof Collection | 'Redirects' | 'Se
       uk: 'Архів',
     },
   },
+  LastName: {
+    plural: {
+      en: 'Last names',
+      uk: 'Прізвища',
+    },
+    singular: {
+      en: 'last name',
+      uk: 'Прізвище',
+    },
+  },
 } as const;
 
 export const GlobalLabel: Record<keyof typeof Global, GlobalLabel> = {
