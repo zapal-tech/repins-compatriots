@@ -15,6 +15,9 @@ import { appName } from '@shared';
 import { buildConfig, Config } from 'payload';
 import sharp from 'sharp';
 
+import { Archives } from '@cms/collections/Archives';
+import { Documents } from '@cms/collections/Documents';
+import { Funds } from '@cms/collections/Funds';
 import { Media } from '@cms/collections/Media';
 import { OpenGraphImages } from '@cms/collections/OpenGraphImages';
 import { Pages } from '@cms/collections/Pages';
@@ -95,7 +98,7 @@ const payloadConfig: Config = {
       : false,
   },
   upload: { defParamCharset: 'utf8' },
-  collections: [Media, OpenGraphImages, Pages, Users],
+  collections: [Media, OpenGraphImages, Pages, Users, Documents, Funds, Archives],
   globals: [Header, Footer, Localization, Settings],
   cookiePrefix: tokenName,
   cors: [process.env.NEXT_PUBLIC_SITE_URL || ''].filter(Boolean),
