@@ -28,6 +28,9 @@ export enum Collection {
   Users = 'users',
   Pages = 'pages',
   Media = 'media',
+  Documents = 'documents',
+  Funds = 'funds',
+  Archives = 'archives',
   OpenGraphImages = 'open-graph-images',
 }
 
