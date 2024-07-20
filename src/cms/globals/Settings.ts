@@ -44,7 +44,8 @@ export const Settings: GlobalConfig = {
         placeholder: '+380 00 000 0000',
       },
     },
-    url({
+    {
+      type: 'text',
       label: {
         en: 'Viber URL',
         uk: 'Посилання на Viber',
@@ -54,7 +55,7 @@ export const Settings: GlobalConfig = {
       admin: {
         placeholder: 'viber://add?number=3809700000000',
       },
-    }),
+    },
     url({
       label: {
         en: 'WhatAapp URL',
