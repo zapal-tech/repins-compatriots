@@ -18,6 +18,7 @@ export interface Config {
     documents: Document;
     funds: Fund;
     archives: Archive;
+    lastName: LastName;
     redirects: Redirect;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -230,15 +231,16 @@ export interface User {
  */
 export interface Document {
   id: number;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "funds".
- */
-export interface Fund {
-  id: number;
+  media: number | Media;
+  archive: number | Archive;
+  fund: number | Fund;
+  description?: string | null;
+  docName?: string | null;
+  case: string;
+  page: number;
+  reserseSide: boolean;
+  publicComment?: string | null;
+  privateComment?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -248,6 +250,32 @@ export interface Fund {
  */
 export interface Archive {
   id: number;
+  shortName: string;
+  name: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "funds".
+ */
+export interface Fund {
+  id: number;
+  archive: number | Archive;
+  shortName: string;
+  name: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "lastName".
+ */
+export interface LastName {
+  id: number;
+  lastName?: string | null;
+  originalLastName?: string | null;
+  document: (number | Document)[];
   updatedAt: string;
   createdAt: string;
 }
