@@ -15,6 +15,9 @@ export interface Config {
     'open-graph-images': OpenGraphImage;
     pages: Page;
     users: User;
+    documents: Document;
+    funds: Fund;
+    archives: Archive;
     redirects: Redirect;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -220,6 +223,33 @@ export interface User {
   loginAttempts?: number | null;
   lockUntil?: string | null;
   password?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "documents".
+ */
+export interface Document {
+  id: number;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "funds".
+ */
+export interface Fund {
+  id: number;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "archives".
+ */
+export interface Archive {
+  id: number;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
