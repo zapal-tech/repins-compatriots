@@ -71,6 +71,36 @@ export const CollectionLabel: Record<keyof typeof Collection | 'Redirects' | 'Se
       uk: 'Результат пошуку',
     },
   },
+  Documents: {
+    plural: {
+      en: 'Documents',
+      uk: 'Документи',
+    },
+    singular: {
+      en: 'Document',
+      uk: 'Документ',
+    },
+  },
+  Funds: {
+    plural: {
+      en: 'Funds',
+      uk: 'Фонди',
+    },
+    singular: {
+      en: 'Fund',
+      uk: 'Фонд',
+    },
+  },
+  Archives: {
+    plural: {
+      en: 'Archives',
+      uk: 'Архіви',
+    },
+    singular: {
+      en: 'Archive',
+      uk: 'Архів',
+    },
+  },
 } as const;
 
 export const GlobalLabel: Record<keyof typeof Global, GlobalLabel> = {
