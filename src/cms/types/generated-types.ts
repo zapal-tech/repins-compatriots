@@ -238,7 +238,7 @@ export interface Document {
   docName?: string | null;
   case: string;
   page: number;
-  reserseSide: boolean;
+  reverseSide: boolean;
   publicComment?: string | null;
   privateComment?: string | null;
   updatedAt: string;

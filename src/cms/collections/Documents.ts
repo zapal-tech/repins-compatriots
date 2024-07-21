@@ -90,7 +90,7 @@ export const Documents: CollectionConfig = {
       ],
     },
     {
-      name: 'reserseSide',
+      name: 'reverseSide',
       type: 'checkbox',
       required: true,
       label: {
