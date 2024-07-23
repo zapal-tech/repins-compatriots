@@ -7,14 +7,10 @@ import { isSupportedLocale } from '@app/utils/i18n';
 import { getLocalApi } from '@app/utils/localApi';
 import { generateMeta } from '@app/utils/seo';
 
-import { Footer } from '@app/components/Footer';
-
-// import { Gutter } from '@app/components/Gutter';
+import { Gutter } from '@app/components/Gutter';
 // import { Hero } from '@app/components/Hero';
-// import { Logo } from '@app/components/Logo';
-// import { PageGutter } from '@app/components/PageGutter';
-
-// import { RichText } from '@app/components/RichText';
+import { PageGutter } from '@app/components/PageGutter';
+import { RichText } from '@app/components/RichText';
 
 import { Collection } from '@cms/types';
 import { Page } from '@cms/types/generated-types';
@@ -52,13 +48,13 @@ const Home = async ({ params: { locale } }: HomeProps) => {
 
   const localApi = await getLocalApi();
 
-  // let home: Page | null = null;
+  let home: Page | null = null;
 
-  // try {
-  //   home = await getHome({ localApi, isDraftMode, locale });
-  // } catch (error) {
-  //   localApi.logger.error(error);
-  // }
+  try {
+    home = await getHome({ localApi, isDraftMode, locale });
+  } catch (error) {
+    localApi.logger.error(error);
+  }
 
   // if (!home) return notFound();
 
@@ -66,12 +62,9 @@ const Home = async ({ params: { locale } }: HomeProps) => {
     <>
       {/* <Hero {...home.hero} /> */}
 
-      {/* <PageGutter> */}
-      {/* <Gutter>
-          <RichText>{home.content}</RichText>
-        </Gutter> */}
-      {/* </PageGutter> */}
-      <Footer locale={locale} />
+      <PageGutter>
+        <Gutter>{/* <RichText>{home.content}</RichText> */}</Gutter>
+      </PageGutter>
     </>
   );
 };

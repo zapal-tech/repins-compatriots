@@ -1,15 +1,21 @@
 @tailwind base;
+
+@layer base {
+  html,
+  body {
+    @apply bg-white-orchid font-sans text-gray-800;
+
+    font-size: 16px;
+  }
+}
+
 @tailwind components;
 @tailwind utilities;
 
 body {
-  overflow: hidden;
-}
-
-body {
-  --sb-track-color: #fff;
-  --sb-thumb-color: #030dff;
-  --sb-size: 5px;
+  --sb-track-color: #fffdf3;
+  --sb-thumb-color: #1c3514;
+  --sb-size: 4px;
 }
 
 body::-webkit-scrollbar {

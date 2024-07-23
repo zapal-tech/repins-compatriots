@@ -8,6 +8,12 @@ const tailwindConfig: Config = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx,html}',
   ],
   safelist: [
+    // Mobile menu
+    'overflow-hidden',
+    'overflow-auto',
+    'left-0',
+    'opacity-0',
+    'opacity-100',
     // Rich text formatting
     'text-start',
     'text-center',
@@ -25,154 +31,66 @@ const tailwindConfig: Config = {
       '3xl': `${breakpoints['3xl']}px`,
       '4xl': `${breakpoints['4xl']}px`,
     },
+    fontFamily: {
+      sans: ['var(--e-ukraine-font)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+      mono: ['var(--cascadia-mono-font)', 'monospace'],
+    },
     fontSize: {
       h1: [
-        '6rem',
+        '1.5rem',
         {
-          lineHeight: '1.3',
-          letterSpacing: '0.175rem',
+          lineHeight: '1.1',
+          letterSpacing: '-0.125rem',
+        },
+      ],
+      'h1-desktop': [
+        '2.75rem',
+        {
+          lineHeight: '1.1',
+          letterSpacing: '-0.125rem',
         },
       ],
       h2: [
-        '4.5rem',
+        '1.25rem',
         {
-          lineHeight: '1.3',
-          letterSpacing: '0.135rem',
+          lineHeight: '1.15',
+          letterSpacing: '-0.06rem',
+        },
+      ],
+      'h2-desktop': [
+        '1.5rem',
+        {
+          lineHeight: '1.15',
+          letterSpacing: '-0.06rem',
         },
       ],
       h3: [
-        '3.75rem',
+        '1.15rem',
         {
-          lineHeight: '1.3',
-          letterSpacing: '0.1rem',
+          lineHeight: '1.2',
+          letterSpacing: '-0.05rem',
         },
       ],
-      h4: [
-        '3rem',
-        {
-          lineHeight: '1.3',
-          letterSpacing: '0.0875rem',
-        },
-      ],
-      h5: [
-        '2.5rem',
-        {
-          lineHeight: '1.4',
-          letterSpacing: '0.073rem',
-        },
-      ],
-      h6: [
-        '2rem',
-        {
-          lineHeight: '1.4',
-          letterSpacing: '0.06rem',
-        },
-      ],
-      '3xl': [
-        '1.5rem',
-        {
-          lineHeight: '1.4',
-          letterSpacing: '0.044rem',
-        },
-      ],
-      '3xl-desktop': [
-        '1.625rem',
-        {
-          lineHeight: '1.4',
-          letterSpacing: '0.05rem',
-        },
-      ],
-      '2xl': [
-        '1.375rem',
-        {
-          lineHeight: '1.4',
-          letterSpacing: '0.04rem',
-        },
-      ],
-      '2xl-desktop': [
-        '1.5rem',
-        {
-          lineHeight: '1.4',
-          letterSpacing: '0.045rem',
-        },
-      ],
-      xl: [
+      'h3-desktop': [
         '1.25rem',
         {
-          lineHeight: '1.4',
-          letterSpacing: '0.035rem',
+          lineHeight: '1.2',
+          letterSpacing: '-0.05rem',
         },
       ],
-      'xl-desktop': [
-        '1.375rem',
-        {
-          lineHeight: '1.4',
-          letterSpacing: '0.039rem',
-        },
-      ],
-      lg: [
-        '1.125rem',
-        {
-          lineHeight: '1.4',
-          letterSpacing: '0.032rem',
-        },
-      ],
-      'lg-desktop': [
-        '1.25rem',
-        {
-          lineHeight: '1.4',
-          letterSpacing: '0.036rem',
-        },
-      ],
-      base: [
-        '1rem',
-        {
-          lineHeight: '1.4',
-          letterSpacing: '0.029rem',
-        },
-      ],
-      'base-desktop': [
-        '1.125rem',
-        {
-          lineHeight: '1.4',
-          letterSpacing: '0.032rem',
-        },
-      ],
-      sm: [
-        '0.875rem',
-        {
-          lineHeight: '1.4',
-          letterSpacing: '0.025rem',
-        },
-      ],
-      'sm-desktop': [
-        '1rem',
-        {
-          lineHeight: '1.4',
-          letterSpacing: '0.028rem',
-        },
-      ],
-      xs: [
-        '0.75rem',
-        {
-          lineHeight: '1.4',
-          letterSpacing: '0.022rem',
-        },
-      ],
-      'xs-desktop': [
-        '0.875rem',
-        {
-          lineHeight: '1.4',
-          letterSpacing: '0.025rem',
-        },
-      ],
+      lg: ['1.125rem', { lineHeight: '1.1' }],
+      'lg-desktop': ['1.25rem', { lineHeight: '1.1' }],
+      base: ['1rem', { lineHeight: '1.1' }],
+      'base-desktop': ['1.125rem', { lineHeight: '1.1' }],
+      sm: ['0.875rem', { lineHeight: '1.1' }],
+      'sm-desktop': ['1rem', { lineHeight: '1.1' }],
     },
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
-      white: '#ffffff',
+      white: '#FFFFFF',
       black: '#000000',
-      orchid: '#FFFDF3',
+      'white-orchid': '#FFFDF3',
       lemongrass: '#AAD891',
       mallard: '#1C3516',
       mahogany: '#5D0E08',
@@ -185,9 +103,13 @@ const tailwindConfig: Config = {
         800: '#262626',
       },
     },
-    extend: {},
+    extend: {
+      transformOrigin: {
+        'center-left': 'left center',
+        'center-right': 'right center',
+      },
+    },
   },
-  plugins: [],
 };
 
 export default tailwindConfig;

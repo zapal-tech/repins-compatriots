@@ -1,7 +1,7 @@
 import { createElement } from 'react';
 import clsx from 'clsx';
 
-type Size = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | '3xl' | '2xl' | 'xl' | 'lg' | 'base' | 'sm' | 'xs';
+type Size = 'h1' | 'h2' | 'h3' | 'lg' | 'base' | 'sm';
 
 type DefaultProps = {
   children?: React.ReactNode;
@@ -23,7 +23,7 @@ type DefaultProps = {
   justify?: boolean;
 };
 
-type HeadingTag = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+type HeadingTag = 'h1' | 'h2' | 'h3';
 type ParagraphTag = 'p';
 type SpanTag = 'span';
 type LabelTag = 'label';
@@ -38,19 +38,12 @@ export type TextProps = DefaultProps &
   React.HTMLAttributes<HTMLHeadingElement | HTMLParagraphElement | HTMLSpanElement | HTMLLabelElement>;
 
 const sizes: Record<Size, string> = {
-  h1: 'text-h4 font-semibold break-words hyphens-auto sm:text-h2 lg:text-h1 lg:font-medium',
-  h2: 'text-h5 font-semibold break-words hyphens-auto sm:text-h3 lg:text-h2',
-  h3: 'text-h6 font-semibold break-words hyphens-auto sm:text-h4 lg:text-h3',
-  h4: 'text-3xl font-semibold break-words hyphens-auto sm:text-h5 lg:text-h4',
-  h5: 'text-2xl font-semibold break-words hyphens-auto sm:text-h6 lg:text-h5',
-  h6: 'text-xl font-semibold break-words hyphens-auto sm:text-3xl lg:text-h6',
-  '3xl': 'text-3xl lg:text-3xl-desktop font-semibold',
-  '2xl': 'text-2xl lg:text-2xl-desktop font-semibold',
-  xl: 'text-xl lg:text-xl-desktop font-semibold',
-  lg: 'text-lg lg:text-lg-desktop font-medium',
-  base: 'text-base lg:text-base-desktop font-medium',
-  sm: 'text-sm lg:text-sm-desktop font-normal',
-  xs: 'text-xs lg:text-xs-desktop font-semibold',
+  h1: 'text-h1 font-mono font-bold break-words hyphens-auto lg:text-h1-desktop',
+  h2: 'text-h2 font-mono font-semibold break-words hyphens-auto lg:text-h2-desktop',
+  h3: 'text-h3 font-mono font-bold break-words hyphens-auto lg:text-h3-desktop',
+  lg: 'text-lg font-sans font-medium lg:text-lg-desktop',
+  base: 'text-base font-sans font-regular lg:text-base-desktop',
+  sm: 'text-sm font-sans font-regular lg:text-sm-desktop',
 };
 
 export const Text: React.FC<TextProps> = ({

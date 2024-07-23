@@ -14,12 +14,10 @@ export const Gutter: React.FC<Props> = ({ children, className, tag = 'div', id, 
   createElement(
     tag,
     {
-      className: clsx(
-        'mx-auto w-full max-w-screen-3xl px-4 sm:px-5',
-        className,
-      ) /* data-lenis-prevent={preventScroll} */,
+      className: clsx('mx-auto w-full max-w-screen-3xl px-4', className),
       id,
       ref,
+      // data-lenis-prevent={preventScroll}
     },
     children,
   );

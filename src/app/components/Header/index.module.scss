@@ -1,0 +1,48 @@
+// Mobile menu toggle
+.label {
+  @apply relative -right-0.5 size-6 cursor-pointer xl:hidden;
+
+  & > span {
+    @apply origin-center-left absolute left-1/2 h-0.5 w-5 -translate-x-1/2 bg-mallard transition-all duration-300;
+
+    &:first-child {
+      @apply top-[0.31rem] -translate-y-1/2 will-change-[top,transform];
+    }
+
+    &:nth-child(2) {
+      @apply top-1/2 -translate-y-1/2 will-change-[transform];
+    }
+
+    &:last-child {
+      @apply bottom-[0.31rem] translate-y-1/2 will-change-[bottom,transform];
+    }
+  }
+}
+
+.checkbox {
+  @apply hidden;
+
+  &:checked {
+    & + .label > span {
+      &:first-child {
+        @apply rotate-45;
+      }
+
+      &:nth-child(2) {
+        @apply scale-x-0;
+      }
+
+      &:last-child {
+        @apply -rotate-45;
+      }
+    }
+
+    & ~ .menu {
+      @apply translate-y-[calc(-100%-40px)] opacity-100 xl:translate-y-0;
+
+      transition:
+        transform linear 0s 0s,
+        opacity cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
+    }
+  }
+}
