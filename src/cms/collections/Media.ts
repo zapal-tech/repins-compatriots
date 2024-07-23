@@ -11,37 +11,18 @@ export const Media: CollectionConfig = {
     group: AdminPanelGroup.Media,
   },
   upload: {
+    formatOptions: { format: 'webp', options: { quality: 80 } },
     mimeTypes: [...defaultGraphicsMimeTypes, 'application/pdf'],
     imageSizes: [
       {
-        name: 'size_768',
-        width: 768,
-        formatOptions: { format: 'webp', options: { quality: 85 } },
-      },
-      {
-        name: 'size_1024',
-        width: 1024,
-        formatOptions: { format: 'webp', options: { quality: 85 } },
+        name: 'size_400',
+        width: 400,
+        formatOptions: { format: 'webp', options: { quality: 80 } },
       },
       {
         name: 'size_1280',
         width: 1280,
-        formatOptions: { format: 'webp', options: { quality: 85 } },
-      },
-      {
-        name: 'size_1440',
-        width: 1400,
-        formatOptions: { format: 'webp', options: { quality: 85 } },
-      },
-      {
-        name: 'size_1920',
-        width: 1920,
-        formatOptions: { format: 'webp', options: { quality: 85 } },
-      },
-      {
-        name: 'size_2560',
-        width: 2560,
-        formatOptions: { format: 'webp', options: { quality: 85 } },
+        formatOptions: { format: 'webp', options: { quality: 80 } },
       },
     ],
   },

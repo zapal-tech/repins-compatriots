@@ -7,6 +7,7 @@ export const Documents: CollectionConfig = {
   labels: CollectionLabel.Documents,
   admin: {
     group: AdminPanelGroup.General,
+    useAsTitle: 'docName',
   },
   fields: [
     {

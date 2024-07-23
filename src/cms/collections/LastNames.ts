@@ -2,9 +2,9 @@ import type { CollectionConfig } from 'payload';
 
 import { AdminPanelGroup, Collection, CollectionLabel } from '@cms/types';
 
-export const LastName: CollectionConfig = {
-  slug: Collection.LastName,
-  labels: CollectionLabel.LastName,
+export const LastNames: CollectionConfig = {
+  slug: Collection.LastNames,
+  labels: CollectionLabel.LastNames,
   admin: {
     group: AdminPanelGroup.General,
     useAsTitle: 'lastName',
