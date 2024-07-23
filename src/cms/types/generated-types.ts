@@ -18,8 +18,9 @@ export interface Config {
     documents: Document;
     funds: Fund;
     archives: Archive;
-    lastName: LastName;
+    'last-names': LastName;
     redirects: Redirect;
+    search: Search;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -73,15 +74,7 @@ export interface Media {
   focalX?: number | null;
   focalY?: number | null;
   sizes?: {
-    size_768?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-    size_1024?: {
+    size_400?: {
       url?: string | null;
       width?: number | null;
       height?: number | null;
@@ -90,30 +83,6 @@ export interface Media {
       filename?: string | null;
     };
     size_1280?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-    size_1440?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-    size_1920?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-    size_2560?: {
       url?: string | null;
       width?: number | null;
       height?: number | null;
@@ -269,7 +238,7 @@ export interface Fund {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "lastName".
+ * via the `definition` "last-names".
  */
 export interface LastName {
   id: number;
@@ -294,6 +263,27 @@ export interface Redirect {
     } | null;
     url?: string | null;
   };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "search".
+ */
+export interface Search {
+  id: number;
+  title?: string | null;
+  priority?: number | null;
+  doc:
+    | {
+        relationTo: 'documents';
+        value: number | Document;
+      }
+    | {
+        relationTo: 'last-names';
+        value: number | LastName;
+      };
+  originalLastName?: string | null;
   updatedAt: string;
   createdAt: string;
 }
