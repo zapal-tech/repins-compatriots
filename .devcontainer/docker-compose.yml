@@ -1,4 +1,4 @@
-version: "3.8"
+version: '3.8'
 
 services:
   app:
@@ -14,7 +14,9 @@ services:
     # Use "forwardPorts" in devcontainer.json to forward an app port locally. "ports" property will not forward from a Codespace.
 
   db:
-    image: postgres:16-alpine # Postgres
+    build:
+      context: .
+      dockerfile: Dockerfile-db # Postgres
     # image: mongo:latest # MongoDB
     restart: unless-stopped
     ports:
@@ -47,7 +49,7 @@ services:
       MINIO_ROOT_PASSWORD: zapal!123
     command: server --console-address ":9001" /data
     healthcheck:
-      test: ["CMD", "mc", "ready", "local"]
+      test: ['CMD', 'mc', 'ready', 'local']
       interval: 5s
       timeout: 5s
       retries: 5
