@@ -8,7 +8,7 @@ import { resendAdapter } from '@payloadcms/email-resend';
 // import { formBuilderPlugin } from '@payloadcms/plugin-form-builder';
 import { nestedDocsPlugin } from '@payloadcms/plugin-nested-docs';
 import { redirectsPlugin } from '@payloadcms/plugin-redirects';
-// import { searchPlugin } from '@payloadcms/plugin-search';
+import { searchPlugin } from '@payloadcms/plugin-search';
 import { seoPlugin } from '@payloadcms/plugin-seo';
 import { s3Storage } from '@payloadcms/storage-s3';
 import { appName } from '@shared';
@@ -18,7 +18,7 @@ import sharp from 'sharp';
 import { Archives } from '@cms/collections/Archives';
 import { Documents } from '@cms/collections/Documents';
 import { Funds } from '@cms/collections/Funds';
-import { LastName } from '@cms/collections/LastName';
+import { LastNames } from '@cms/collections/LastNames';
 import { Media } from '@cms/collections/Media';
 import { OpenGraphImages } from '@cms/collections/OpenGraphImages';
 import { Pages } from '@cms/collections/Pages';
@@ -99,7 +99,7 @@ const payloadConfig: Config = {
       : false,
   },
   upload: { defParamCharset: 'utf8' },
-  collections: [Media, OpenGraphImages, Pages, Users, Documents, Funds, Archives, LastName],
+  collections: [Media, OpenGraphImages, Pages, Users, Documents, Funds, Archives, LastNames],
   globals: [Header, Footer, Localization, Settings],
   cookiePrefix: tokenName,
   cors: [process.env.NEXT_PUBLIC_SITE_URL || ''].filter(Boolean),
@@ -182,34 +182,35 @@ const payloadConfig: Config = {
       generateTitle,
       uploadsCollection: Collection.OpenGraphImages,
     }),
-    // searchPlugin({
-    // collections: [Collection.Documents],
-    // defaultPriorities: {
-    //   [Collection.Documents]: 10,
-    // },
-    // beforeSync: ({ originalDoc, searchDoc }) => ({
-    //   ...searchDoc,
-    //   subtitle: originalDoc?.subtitle,
-    // }),
-    // searchOverrides: {
-    //   labels: CollectionLabel.Search,
-    //   admin: {
-    //     group: AdminPanelGroup.General,
-    //     description: {
-    //       en: 'This is a collection of automatically created search results. These results are used by the global site search and will be updated automatically as documents in the CMS are created or updated.',
-    //       uk: 'Це колекція автоматично створених результатів пошуку. Ці результати використовуються глобальним пошуком по сайту і оновлюються автоматично при створенні або оновленні документів в CMS.',
-    //     },
-    //   },
-    //   fields: ({ defaultFields }) => [
-    //     ...defaultFields,
-    // {
-    //   admin: { readOnly: true },
-    //   name: 'subtitle',
-    //   type: 'text',
-    // },
-    //     ],
-    //   },
-    // }),
+    searchPlugin({
+      collections: [Collection.Documents, Collection.LastNames],
+      defaultPriorities: {
+        [Collection.LastNames]: 10,
+        [Collection.Documents]: 20,
+      },
+      beforeSync: ({ originalDoc, searchDoc }) => ({
+        ...searchDoc,
+        originalLastName: originalDoc?.originalLastName,
+      }),
+      searchOverrides: {
+        labels: CollectionLabel.Search,
+        admin: {
+          group: AdminPanelGroup.General,
+          description: {
+            en: 'This is a collection of automatically created search results. These results are used by the global site search and will be updated automatically as documents in the CMS are created or updated.',
+            uk: 'Це колекція автоматично створених результатів пошуку. Ці результати використовуються глобальним пошуком по сайту і оновлюються автоматично при створенні або оновленні документів в CMS.',
+          },
+        },
+        fields: ({ defaultFields }) => [
+          ...defaultFields,
+          {
+            admin: { readOnly: true },
+            name: 'originalLastName',
+            type: 'text',
+          },
+        ],
+      },
+    }),
   ],
   async onInit(payload) {
     if (isDev) {
