@@ -190,6 +190,7 @@ const payloadConfig: Config = {
       },
       beforeSync: ({ originalDoc, searchDoc }) => ({
         ...searchDoc,
+        title: originalDoc?.lastName,
         originalLastName: originalDoc?.originalLastName,
       }),
       searchOverrides: {
