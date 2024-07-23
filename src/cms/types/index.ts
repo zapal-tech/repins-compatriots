@@ -31,7 +31,7 @@ export enum Collection {
   Documents = 'documents',
   Funds = 'funds',
   Archives = 'archives',
-  LastName = 'lastName',
+  LastNames = 'last-names',
   OpenGraphImages = 'open-graph-images',
 }
 

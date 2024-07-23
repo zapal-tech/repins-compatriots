@@ -101,13 +101,13 @@ export const CollectionLabel: Record<keyof typeof Collection | 'Redirects' | 'Se
       uk: 'Архів',
     },
   },
-  LastName: {
+  LastNames: {
     plural: {
       en: 'Last names',
       uk: 'Прізвища',
     },
     singular: {
-      en: 'last name',
+      en: 'Last name',
       uk: 'Прізвище',
     },
   },
