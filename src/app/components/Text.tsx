@@ -27,15 +27,19 @@ type HeadingTag = 'h1' | 'h2' | 'h3';
 type ParagraphTag = 'p';
 type SpanTag = 'span';
 type LabelTag = 'label';
+type TableCellTag = 'th' | 'td';
 
 type HeadingProps = { tag?: HeadingTag };
 type ParagraphProps = { tag?: ParagraphTag };
 type SpanProps = { tag?: SpanTag };
 type LabelProps = { tag?: LabelTag; htmlFor?: string };
+type TableCellProps = { tag?: TableCellTag; scope?: 'row' | 'col' };
 
 export type TextProps = DefaultProps &
-  (HeadingProps | ParagraphProps | SpanProps | LabelProps) &
-  React.HTMLAttributes<HTMLHeadingElement | HTMLParagraphElement | HTMLSpanElement | HTMLLabelElement>;
+  (HeadingProps | ParagraphProps | SpanProps | LabelProps | TableCellProps) &
+  React.HTMLAttributes<
+    HTMLHeadingElement | HTMLParagraphElement | HTMLSpanElement | HTMLLabelElement | HTMLTableCellElement
+  >;
 
 const sizes: Record<Size, string> = {
   h1: 'text-h1 font-mono font-bold break-words hyphens-auto lg:text-h1-desktop',

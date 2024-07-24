@@ -11,6 +11,7 @@ import { Gutter } from '@app/components/Gutter';
 // import { Hero } from '@app/components/Hero';
 import { PageGutter } from '@app/components/PageGutter';
 import { RichText } from '@app/components/RichText';
+import { Table } from '@app/components/Table';
 
 import { Collection } from '@cms/types';
 import { Page } from '@cms/types/generated-types';
@@ -63,7 +64,25 @@ const Home = async ({ params: { locale } }: HomeProps) => {
       {/* <Hero {...home.hero} /> */}
 
       <PageGutter>
-        <Gutter>{/* <RichText>{home.content}</RichText> */}</Gutter>
+        <Gutter>
+          <Table
+            headers={['Title', 'Terra', 'Action']}
+            data={[
+              [
+                { title: 'Test 1' },
+                { title: 'Test 1' },
+                {
+                  title: 'Test 1',
+                  onClick: async () => {
+                    'use server';
+                  },
+                },
+              ],
+              [{ title: 'Test 1' }, { title: 'Test 1' }, { title: 'Test 1' }],
+            ]}
+          />
+          {/* <RichText>{home.content}</RichText> */}
+        </Gutter>
       </PageGutter>
     </>
   );
