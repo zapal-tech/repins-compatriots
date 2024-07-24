@@ -244,7 +244,12 @@ export interface LastName {
   id: number;
   lastName?: string | null;
   originalLastName?: string | null;
-  document: (number | Document)[];
+  document?: (number | Document)[] | null;
+  year?: number | null;
+  town?: string | null;
+  address?: string | null;
+  populationGroup?: string | null;
+  socialStatus?: string | null;
   updatedAt: string;
   createdAt: string;
 }

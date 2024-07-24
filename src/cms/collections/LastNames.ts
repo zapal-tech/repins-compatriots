@@ -35,7 +35,46 @@ export const LastNames: CollectionConfig = {
         en: 'Documents',
         uk: 'Документи',
       },
-      required: true,
+    },
+    {
+      name: 'year',
+      type: 'number',
+      label: {
+        en: 'The year of information fixation',
+        uk: 'Рік фіксації інформації',
+      },
+    },
+    {
+      name: 'town',
+      type: 'text',
+      label: {
+        en: 'Settlement',
+        uk: 'Населений пункт',
+      },
+    },
+    {
+      name: 'address',
+      type: 'text',
+      label: {
+        en: 'Church attendance or address',
+        uk: 'Прихід церкви або адреса',
+      },
+    },
+    {
+      name: 'populationGroup',
+      type: 'text',
+      label: {
+        en: 'Population group according to the document',
+        uk: 'Група населення за документом',
+      },
+    },
+    {
+      name: 'socialStatus',
+      type: 'text',
+      label: {
+        en: 'Social status / origin',
+        uk: 'Соціальний статус / походження',
+      },
     },
   ],
 };
