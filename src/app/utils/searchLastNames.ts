@@ -67,12 +67,6 @@ export const searchLastNames = async ({ localApi, locale, lastName, page = 1 }: 
   const { isEnabled: isDraftMode } = draftMode();
 
   try {
-    const queryWhereSearch = `SIMILARITY(title,'${lastName}') > 0.1 or SIMILARITY(original_last_name,'${lastName}') > 0.1`;
-
-    // const resSearch = (await localApi.db.drizzle
-    //   .select()
-    //   .from(localApi.db.tables.search)
-    //   .where(sql.raw(queryWhereSearch))) as DocToSync[];
     const resSearch = (await localApi.db.drizzle
       .select()
       .from(localApi.db.tables.search)
