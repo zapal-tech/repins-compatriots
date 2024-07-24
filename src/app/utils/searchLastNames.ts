@@ -66,20 +66,28 @@ const getSearch = async ({
 export const searchLastNames = async ({ localApi, locale, lastName, page = 1 }: searchLastNameProps) => {
   const { isEnabled: isDraftMode } = draftMode();
 
-  const queryWhereSearch = `SIMILARITY(title,'${lastName}') > 0.1 or SIMILARITY(original_last_name,'${lastName}') > 0.1`;
-
-  const resSearch = (await localApi.db.drizzle
-    .select()
-    .from(localApi.db.tables.search)
-    .where(sql.raw(queryWhereSearch))) as DocToSync[];
-
-  let idsSearch = resSearch.map((item) => item?.id) as Search['id'][];
-
-  const resSearchRels = await getSearch({ localApi, isDraftMode, locale, ids: idsSearch });
-
-  const ids = resSearchRels.map((item) => item.doc.value) as LastName['id'][];
-
   try {
+    const queryWhereSearch = `SIMILARITY(title,'${lastName}') > 0.1 or SIMILARITY(original_last_name,'${lastName}') > 0.1`;
+
+    // const resSearch = (await localApi.db.drizzle
+    //   .select()
+    //   .from(localApi.db.tables.search)
+    //   .where(sql.raw(queryWhereSearch))) as DocToSync[];
+    const resSearch = (await localApi.db.drizzle
+      .select()
+      .from(localApi.db.tables.search)
+      .where(
+        sql`SIMILARITY(title,'${sql.raw(lastName)}') > 0.1 or SIMILARITY(original_last_name,'${sql.raw(lastName)}') > 0.1`,
+      )) as DocToSync[];
+
+    if (!resSearch.length) return [];
+
+    let idsSearch = resSearch.map((item) => item?.id) as Search['id'][];
+
+    const resSearchRels = await getSearch({ localApi, isDraftMode, locale, ids: idsSearch });
+
+    const ids = resSearchRels.map((item) => item.doc.value) as LastName['id'][];
+
     return await getLastNames({ localApi, isDraftMode, locale, ids, page });
   } catch (error) {}
 
