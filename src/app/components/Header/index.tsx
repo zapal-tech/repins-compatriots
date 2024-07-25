@@ -39,7 +39,7 @@ export const Header: React.FC<HeaderProps> = async ({ locale }) => {
   if (!header || !settings) return null;
 
   return (
-    <header className="fixed h-12 w-full border-b border-mallard bg-white-orchid xl:h-20">
+    <header className="fixed z-10 h-12 w-full border-b border-mallard bg-white-orchid xl:h-20">
       <Gutter className="flex h-full items-center justify-between gap-11 xl:justify-start">
         <Link href="/" className="h-3/4 xl:h-2/3">
           <Logo fill="#1C3516" className="h-full" type="icon" />
