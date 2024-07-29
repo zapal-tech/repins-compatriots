@@ -30,7 +30,6 @@ export const LastNames: CollectionConfig = {
       name: 'document',
       type: 'relationship',
       relationTo: Collection.Documents,
-      hasMany: true,
       label: {
         en: 'Documents',
         uk: 'Документи',
