@@ -30,7 +30,6 @@ export interface Config {
   globals: {
     header: Header;
     footer: Footer;
-    localization: Localization;
     settings: Settings;
   };
   locale: 'uk' | 'en';
@@ -244,7 +243,7 @@ export interface LastName {
   id: number;
   lastName?: string | null;
   originalLastName?: string | null;
-  document?: (number | Document)[] | null;
+  document?: (number | null) | Document;
   year?: number | null;
   town?: string | null;
   address?: string | null;
@@ -369,25 +368,6 @@ export interface Footer {
     };
     id?: string | null;
   }[];
-  updatedAt?: string | null;
-  createdAt?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "localization".
- */
-export interface Localization {
-  id: number;
-  translation:
-    | {
-        [k: string]: unknown;
-      }
-    | unknown[]
-    | string
-    | number
-    | boolean
-    | null;
-  _status?: ('draft' | 'published') | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
