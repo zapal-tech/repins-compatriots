@@ -24,7 +24,7 @@ import { OpenGraphImages } from '@cms/collections/OpenGraphImages';
 import { Pages } from '@cms/collections/Pages';
 import { Users } from '@cms/collections/Users';
 
-import { Footer, Header, Localization, Settings } from '@cms/globals';
+import { Footer, Header, Settings } from '@cms/globals';
 
 import { Logo } from '@cms/components/Logo';
 import { NavLogo } from '@cms/components/NavLogo';
@@ -100,7 +100,7 @@ const payloadConfig: Config = {
   },
   upload: { defParamCharset: 'utf8' },
   collections: [Media, OpenGraphImages, Pages, Users, Documents, Funds, Archives, LastNames],
-  globals: [Header, Footer, Localization, Settings],
+  globals: [Header, Footer, Settings],
   cookiePrefix: tokenName,
   cors: [process.env.NEXT_PUBLIC_SITE_URL || ''].filter(Boolean),
   csrf: [process.env.NEXT_PUBLIC_SITE_URL || ''].filter(Boolean),
