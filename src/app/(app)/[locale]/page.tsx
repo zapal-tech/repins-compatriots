@@ -8,7 +8,7 @@ import { getLocalApi } from '@app/utils/localApi';
 import { generateMeta } from '@app/utils/seo';
 
 import { Gutter } from '@app/components/Gutter';
-// import { Hero } from '@app/components/Hero';
+import { Hero } from '@app/components/Hero';
 import { PageGutter } from '@app/components/PageGutter';
 import { RichText } from '@app/components/RichText';
 import { Table } from '@app/components/Table';
@@ -57,12 +57,11 @@ const Home = async ({ params: { locale } }: HomeProps) => {
     localApi.logger.error(error);
   }
 
-  // if (!home) return notFound();
+  if (!home) return notFound();
 
   return (
     <>
-      {/* <Hero {...home.hero} /> */}
-
+      <Hero {...home.hero} />
       <PageGutter>
         <Gutter>
           <Table
