@@ -1,4 +1,3 @@
-import { createElement } from 'react';
 import clsx from 'clsx';
 
 import { Text } from './Text';
