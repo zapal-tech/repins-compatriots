@@ -1,38 +1,80 @@
-import { title } from 'process';
-import { Payload } from 'payload';
+'use server';
 
-import { Locale } from '@shared/i18n';
+import { revalidatePath } from 'next/cache';
+import { redirect } from 'next/navigation';
 
-import { searchLastNames } from './searchLastNames';
+import { LastName } from '@cms/types/generated-types';
 
-type lastNames = {
-  lastName: string;
-  originalLastName: string;
+import { jwtDecode, jwtEncode } from './jwt';
+
+type GroupDataByLastNameProps = {
+  lastNames: LastName[];
 };
 
-type groupDataByLastNameProps = {
-  localApi: Payload;
-  locale: Locale;
-  lastNames: lastNames[];
+type FileName = {
+  title: string;
+  onClick?: () => void;
+  id?: string | number;
 };
 
-export const groupDataByLastName = async ({ localApi, locale, lastNames }: groupDataByLastNameProps) => {
+export type GroupData = {
+  title: string;
+  data: {
+    title: string;
+    onClick?: () => void;
+    id?: string | number;
+  }[][];
+};
+
+export const redirectToDocument = (data: string | number) => {
+  const token = jwtEncode({ data });
+  return redirect(`${process.env.NEXT_PUBLIC_SITE_URL}/check-doc?token=${encodeURIComponent(token)}`);
+};
+
+export const groupDataByLastName = async ({ lastNames }: GroupDataByLastNameProps): Promise<GroupData[]> => {
   let rawData = await Promise.all(
     lastNames.map(async (item) => {
-      const data = await searchLastNames({
-        localApi,
-        locale,
-        lastName: item.lastName,
-        originalLastName: item.originalLastName,
-      });
+      let fileName: FileName = {
+        title: '-',
+      };
+
+      if (
+        item.document &&
+        typeof item.document === 'object' &&
+        typeof item.document.archive === 'object' &&
+        typeof item.document.fund === 'object'
+      ) {
+        fileName.title = `${item.document.archive.shortName}_${item.document.fund.shortName}_${!!item.document.description ? item.document.description : '-'}_${item.document.case}_${item.document.page}${item.document.reverseSide ? 'зв' : ''}`;
+        fileName.id = item.id;
+      }
 
       return {
-        title: item.lastName,
+        title: item.lastName || '-',
         data: [
-          {
-            title: item.originalLastName,
-            data,
-          },
+          [
+            {
+              title: item.lastName || '-',
+            },
+            {
+              title: item.originalLastName || '-',
+            },
+            {
+              title: item.year?.toString() || '-',
+            },
+            {
+              title: item.town || '-',
+            },
+            {
+              title: item.address || '-',
+            },
+            {
+              title: item.populationGroup || '-',
+            },
+            {
+              title: item.socialStatus || '-',
+            },
+            fileName,
+          ],
         ],
       };
     }),
@@ -48,6 +90,6 @@ export const groupDataByLastName = async ({ localApi, locale, lastNames }: group
     }
   }
 
-  const result = rawData.filter((item) => item.title && item);
+  const result = rawData.filter((item) => item.title && item) as GroupData[];
   return result;
 };

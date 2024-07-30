@@ -12,7 +12,6 @@ type searchLastNameProps = {
   localApi: Payload;
   locale: Locale;
   lastName: string;
-  originalLastName?: string;
   page?: number;
 };
 
@@ -37,6 +36,7 @@ const getLastNames = async ({
         id: { in: ids },
       },
       locale,
+      depth: 4,
       page: Number(page),
       limit: 12,
     })
@@ -64,13 +64,7 @@ const getSearch = async ({
     })
   ).docs;
 
-export const searchLastNames = async ({
-  localApi,
-  locale,
-  lastName,
-  originalLastName,
-  page = 1,
-}: searchLastNameProps) => {
+export const searchLastNames = async ({ localApi, locale, lastName, page = 1 }: searchLastNameProps) => {
   const { isEnabled: isDraftMode } = draftMode();
 
   try {
@@ -78,7 +72,7 @@ export const searchLastNames = async ({
       .select()
       .from(localApi.db.tables.search)
       .where(
-        sql`SIMILARITY(title,'${sql.raw(lastName)}') > 0.1 or SIMILARITY(original_last_name,'${sql.raw(originalLastName || lastName)}') > 0.1`,
+        sql`SIMILARITY(title,'${sql.raw(lastName)}') > 0.1 or SIMILARITY(original_last_name,'${sql.raw(lastName)}') > 0.1`,
       )) as DocToSync[];
 
     if (!resSearch.length) return [];
