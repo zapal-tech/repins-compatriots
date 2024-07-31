@@ -2,12 +2,23 @@ import type { CollectionConfig } from 'payload';
 
 import { AdminPanelGroup, Collection, CollectionLabel } from '@cms/types';
 
+import { allAdminAccess, anyAdminAdminUIAccess, rootAccess, rootAndAdminAdminUIAccess } from '@cms/access';
+
+import { allAdminAndUserAccess } from './Users/access';
+
 export const LastNames: CollectionConfig = {
   slug: Collection.LastNames,
   labels: CollectionLabel.LastNames,
   admin: {
     group: AdminPanelGroup.General,
     useAsTitle: 'lastName',
+  },
+  access: {
+    admin: anyAdminAdminUIAccess,
+    create: allAdminAccess,
+    delete: rootAccess,
+    read: allAdminAndUserAccess,
+    update: rootAndAdminAdminUIAccess,
   },
   fields: [
     {
@@ -17,6 +28,7 @@ export const LastNames: CollectionConfig = {
         en: 'Last name',
         uk: 'Прізвище',
       },
+      required: true,
     },
     {
       name: 'originalLastName',
@@ -25,6 +37,7 @@ export const LastNames: CollectionConfig = {
         en: 'Original last name',
         uk: 'Оригінальне прізвище',
       },
+      required: true,
     },
     {
       name: 'document',
@@ -45,11 +58,13 @@ export const LastNames: CollectionConfig = {
     },
     {
       name: 'town',
-      type: 'text',
+      type: 'relationship',
       label: {
-        en: 'Settlement',
+        en: 'Town',
         uk: 'Населений пункт',
       },
+      relationTo: Collection.Towns,
+      required: true,
     },
     {
       name: 'address',

@@ -20,8 +20,10 @@ import { Documents } from '@cms/collections/Documents';
 import { Funds } from '@cms/collections/Funds';
 import { LastNames } from '@cms/collections/LastNames';
 import { Media } from '@cms/collections/Media';
+import { MediaDocuments } from '@cms/collections/MediaDocuments';
 import { OpenGraphImages } from '@cms/collections/OpenGraphImages';
 import { Pages } from '@cms/collections/Pages';
+import { Towns } from '@cms/collections/Towns';
 import { Users } from '@cms/collections/Users';
 
 import { Footer, Header, Settings } from '@cms/globals';
@@ -99,7 +101,7 @@ const payloadConfig: Config = {
       : false,
   },
   upload: { defParamCharset: 'utf8' },
-  collections: [Media, OpenGraphImages, Pages, Users, Documents, Funds, Archives, LastNames],
+  collections: [Media, OpenGraphImages, Pages, Users, Documents, Funds, Archives, LastNames, Towns, MediaDocuments],
   globals: [Header, Footer, Settings],
   cookiePrefix: tokenName,
   cors: [process.env.NEXT_PUBLIC_SITE_URL || ''].filter(Boolean),

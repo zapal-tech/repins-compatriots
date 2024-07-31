@@ -8,6 +8,8 @@ import { UserRole } from '@cms/types';
 
 export const rootAccess: Access = ({ req: { user } }) => checkRole([UserRole.Root], user);
 export const anyAdminAccess: Access = ({ req: { user } }) => checkRole([UserRole.Root, UserRole.Admin], user);
+export const allAdminAccess: Access = ({ req: { user } }) =>
+  checkRole([UserRole.Root, UserRole.Admin, UserRole.AdminDB], user);
 
 export const anyoneAccess: Access = () => true;
 
@@ -29,6 +31,8 @@ type AdminAccess = ({ req }: { req: PayloadRequest }) => boolean | Promise<boole
 
 export const rootAdminUIAccess: AdminAccess = ({ req: { user } }) => checkRole([UserRole.Root], user);
 export const anyAdminAdminUIAccess: AdminAccess = ({ req: { user } }) =>
+  checkRole([UserRole.Root, UserRole.Admin, UserRole.AdminDB], user);
+export const rootAndAdminAdminUIAccess: AdminAccess = ({ req: { user } }) =>
   checkRole([UserRole.Root, UserRole.Admin], user);
 
 // Field

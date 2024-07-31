@@ -19,6 +19,8 @@ export interface Config {
     funds: Fund;
     archives: Archive;
     'last-names': LastName;
+    towns: Town;
+    'media-documents': MediaDocument;
     redirects: Redirect;
     search: Search;
     'payload-preferences': PayloadPreference;
@@ -181,7 +183,7 @@ export interface User {
   id: number;
   firstName: string;
   lastName: string;
-  roles?: ('root' | 'admin')[] | null;
+  roles?: ('root' | 'admin' | 'admin-database')[] | null;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -199,16 +201,26 @@ export interface User {
  */
 export interface Document {
   id: number;
-  media: number | Media;
+  media?: (number | null) | MediaDocument;
   archive: number | Archive;
   fund: number | Fund;
-  description?: string | null;
   docName?: string | null;
-  case: string;
+  description?: number | null;
+  case: number;
   page: number;
   reverseSide: boolean;
   publicComment?: string | null;
   privateComment?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media-documents".
+ */
+export interface MediaDocument {
+  id: number;
+  media?: number | Media | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -241,14 +253,24 @@ export interface Fund {
  */
 export interface LastName {
   id: number;
-  lastName?: string | null;
-  originalLastName?: string | null;
+  lastName: string;
+  originalLastName: string;
   document?: (number | null) | Document;
   year?: number | null;
-  town?: string | null;
+  town: number | Town;
   address?: string | null;
   populationGroup?: string | null;
   socialStatus?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "towns".
+ */
+export interface Town {
+  id: number;
+  name: string;
   updatedAt: string;
   createdAt: string;
 }

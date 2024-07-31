@@ -2,6 +2,10 @@ import type { CollectionConfig } from 'payload';
 
 import { AdminPanelGroup, Collection, CollectionLabel } from '@cms/types';
 
+import { allAdminAccess, anyAdminAdminUIAccess, rootAccess, rootAndAdminAdminUIAccess } from '@cms/access';
+
+import { allAdminAndUserAccess } from './Users/access';
+
 export const Documents: CollectionConfig = {
   slug: Collection.Documents,
   labels: CollectionLabel.Documents,
@@ -9,16 +13,22 @@ export const Documents: CollectionConfig = {
     group: AdminPanelGroup.General,
     useAsTitle: 'docName',
   },
+  access: {
+    admin: anyAdminAdminUIAccess,
+    create: allAdminAccess,
+    delete: rootAccess,
+    read: allAdminAndUserAccess,
+    update: rootAndAdminAdminUIAccess,
+  },
   fields: [
     {
-      type: 'upload',
+      type: 'relationship',
       name: 'media',
       label: {
         en: 'Media',
         uk: 'Медіа',
       },
-      relationTo: Collection.Media,
-      required: true,
+      relationTo: Collection.MediaDocuments,
     },
     {
       type: 'row',
@@ -52,14 +62,6 @@ export const Documents: CollectionConfig = {
       ],
     },
     {
-      name: 'description',
-      type: 'textarea',
-      label: {
-        en: 'Description',
-        uk: 'Опис',
-      },
-    },
-    {
       name: 'docName',
       type: 'text',
       label: {
@@ -71,8 +73,16 @@ export const Documents: CollectionConfig = {
       type: 'row',
       fields: [
         {
+          name: 'description',
+          type: 'number',
+          label: {
+            en: 'Description',
+            uk: 'Опис',
+          },
+        },
+        {
           name: 'case',
-          type: 'text',
+          type: 'number',
           required: true,
           label: {
             en: 'Case',
@@ -84,7 +94,7 @@ export const Documents: CollectionConfig = {
           type: 'number',
           label: {
             en: 'Page',
-            uk: 'Сторінка',
+            uk: 'Аркуш',
           },
           required: true,
         },

@@ -111,6 +111,26 @@ export const CollectionLabel: Record<keyof typeof Collection | 'Redirects' | 'Se
       uk: 'Прізвище',
     },
   },
+  Towns: {
+    plural: {
+      en: 'Towns',
+      uk: 'Населені пункти',
+    },
+    singular: {
+      en: 'Town',
+      uk: 'Населений пункт',
+    },
+  },
+  MediaDocuments: {
+    plural: {
+      en: 'Media documents',
+      uk: 'Медіа документи',
+    },
+    singular: {
+      en: 'Media document Library',
+      uk: 'Медіа документи бібліотека',
+    },
+  },
 } as const;
 
 export const GlobalLabel: Record<keyof typeof Global, GlobalLabel> = {

@@ -2,12 +2,23 @@ import type { CollectionConfig } from 'payload';
 
 import { AdminPanelGroup, Collection, CollectionLabel } from '@cms/types';
 
+import { allAdminAccess, anyAdminAdminUIAccess, rootAccess, rootAndAdminAdminUIAccess } from '@cms/access';
+
+import { allAdminAndUserAccess } from './Users/access';
+
 export const Funds: CollectionConfig = {
   slug: Collection.Funds,
   labels: CollectionLabel.Funds,
   admin: {
     group: AdminPanelGroup.General,
     useAsTitle: 'name',
+  },
+  access: {
+    admin: anyAdminAdminUIAccess,
+    create: allAdminAccess,
+    delete: rootAccess,
+    read: allAdminAndUserAccess,
+    update: rootAndAdminAdminUIAccess,
   },
   fields: [
     {

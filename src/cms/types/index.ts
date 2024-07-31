@@ -2,6 +2,7 @@ import { Locale } from '@shared/i18n';
 
 export enum UserRole {
   Root = 'root',
+  AdminDB = 'admin-database',
   Admin = 'admin',
 }
 
@@ -32,6 +33,8 @@ export enum Collection {
   Funds = 'funds',
   Archives = 'archives',
   LastNames = 'last-names',
+  Towns = 'towns',
+  MediaDocuments = 'media-documents',
   OpenGraphImages = 'open-graph-images',
 }
 

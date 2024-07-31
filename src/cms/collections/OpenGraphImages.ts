@@ -2,6 +2,10 @@ import { CollectionConfig } from 'payload';
 
 import { AdminPanelGroup, Collection, CollectionLabel } from '@cms/types';
 
+import { allAdminAccess, anyAdminAdminUIAccess, rootAccess, rootAndAdminAdminUIAccess } from '@cms/access';
+
+import { allAdminAndUserAccess } from './Users/access';
+
 export const OpenGraphImages: CollectionConfig = {
   slug: Collection.OpenGraphImages,
   labels: CollectionLabel.OpenGraphImages,
@@ -11,6 +15,13 @@ export const OpenGraphImages: CollectionConfig = {
       en: '1200x630 preview image for the link',
       uk: '1200x630 зображення попереднього перегляду посилання',
     },
+  },
+  access: {
+    admin: anyAdminAdminUIAccess,
+    create: allAdminAccess,
+    delete: rootAccess,
+    read: allAdminAndUserAccess,
+    update: rootAndAdminAdminUIAccess,
   },
   upload: {
     resizeOptions: { width: 1200 },

@@ -6,12 +6,12 @@ import { allAdminAccess, anyAdminAdminUIAccess, rootAccess, rootAndAdminAdminUIA
 
 import { allAdminAndUserAccess } from './Users/access';
 
-export const Archives: CollectionConfig = {
-  slug: Collection.Archives,
-  labels: CollectionLabel.Archives,
+export const MediaDocuments: CollectionConfig = {
+  slug: Collection.MediaDocuments,
+  labels: CollectionLabel.MediaDocuments,
   admin: {
-    group: AdminPanelGroup.General,
-    useAsTitle: 'name',
+    group: AdminPanelGroup.Media,
+    useAsTitle: 'media',
   },
   access: {
     admin: anyAdminAdminUIAccess,
@@ -22,22 +22,13 @@ export const Archives: CollectionConfig = {
   },
   fields: [
     {
-      name: 'shortName',
-      type: 'text',
+      type: 'upload',
+      name: 'media',
       label: {
-        en: 'Short Name',
-        uk: 'Коротка назва',
+        en: 'Media',
+        uk: 'Медіа',
       },
-      required: true,
-    },
-    {
-      name: 'name',
-      type: 'text',
-      label: {
-        en: 'Name',
-        uk: 'Назва',
-      },
-      required: true,
+      relationTo: Collection.Media,
     },
   ],
 };

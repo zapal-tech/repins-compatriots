@@ -2,7 +2,13 @@ import type { CollectionConfig } from 'payload';
 
 import { AdminPanelGroup, Collection, CollectionLabel, UserRole } from '@cms/types';
 
-import { anyAdminAdminUIAccess, anyAdminFieldAccess, rootAccess, rootFieldAccess } from '@cms/access';
+import {
+  anyAdminAdminUIAccess,
+  anyAdminFieldAccess,
+  rootAccess,
+  rootAndAdminAdminUIAccess,
+  rootFieldAccess,
+} from '@cms/access';
 
 import { isNotDev } from '@shared/env';
 
@@ -28,7 +34,7 @@ export const Users: CollectionConfig = {
     create: rootAccess,
     delete: rootAccess,
     read: anyAdminAndUserAccess,
-    update: anyAdminAndUserAccess,
+    update: rootAndAdminAdminUIAccess,
   },
   admin: {
     group: AdminPanelGroup.General,
@@ -86,6 +92,13 @@ export const Users: CollectionConfig = {
             uk: 'Адміністратор',
           },
           value: UserRole.Admin,
+        },
+        {
+          label: {
+            en: 'Admin database',
+            uk: 'Адміністратор бази даних',
+          },
+          value: UserRole.AdminDB,
         },
       ],
       hooks: {

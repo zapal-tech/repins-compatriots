@@ -6,9 +6,9 @@ import { allAdminAccess, anyAdminAdminUIAccess, rootAccess, rootAndAdminAdminUIA
 
 import { allAdminAndUserAccess } from './Users/access';
 
-export const Archives: CollectionConfig = {
-  slug: Collection.Archives,
-  labels: CollectionLabel.Archives,
+export const Towns: CollectionConfig = {
+  slug: Collection.Towns,
+  labels: CollectionLabel.Towns,
   admin: {
     group: AdminPanelGroup.General,
     useAsTitle: 'name',
@@ -21,15 +21,6 @@ export const Archives: CollectionConfig = {
     update: rootAndAdminAdminUIAccess,
   },
   fields: [
-    {
-      name: 'shortName',
-      type: 'text',
-      label: {
-        en: 'Short Name',
-        uk: 'Коротка назва',
-      },
-      required: true,
-    },
     {
       name: 'name',
       type: 'text',
