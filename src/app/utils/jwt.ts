@@ -16,7 +16,7 @@ export const jwtEncode = ({ data }: jwtEncodeProps): jwtDecodeProps['token'] => 
       data,
     },
     process.env.PAYLOAD_SECRET || 'jwt_secret846',
-    { expiresIn: 60 * 60 * 24 },
+    { expiresIn: 1000 * 60 * 60 * 24 },
   ) as jwtDecodeProps['token'];
 };
 

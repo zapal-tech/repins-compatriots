@@ -55,6 +55,13 @@ const CheckDoc = async ({ params: { locale }, searchParams: { token } }: CheckDo
   if (!token) return notFound();
   const decode = jwtDecode({ token });
 
+  const dateNow = Number(
+    Date.now()
+      .toString()
+      .substring(0, Date.now().toString().length - 3),
+  );
+  if (!decode || dateNow > decode?.exp) return notFound();
+
   const { isEnabled: isDraftMode } = draftMode();
   const localApi = await getLocalApi();
   const dict = await getDictionary(locale);
@@ -84,7 +91,10 @@ const CheckDoc = async ({ params: { locale }, searchParams: { token } }: CheckDo
   ) {
     docName = `${lastName.document.archive.shortName}_${lastName.document.fund.shortName}_${!!lastName.document.description ? lastName.document.description : '-'}_${lastName.document.case}_${lastName.document.page}${lastName.document.reverseSide ? 'зв' : ''}`;
 
-    media = lastName.document.media;
+    media =
+      lastName.document.media && lastName.document.media.media && typeof lastName.document.media.media === 'object'
+        ? lastName.document.media.media
+        : null;
 
     publicComment = lastName.document.publicComment;
   }
