@@ -87,7 +87,8 @@ const CheckDoc = async ({ params: { locale }, searchParams: { token } }: CheckDo
     typeof lastName.document === 'object' &&
     typeof lastName.document.media === 'object' &&
     typeof lastName.document.archive === 'object' &&
-    typeof lastName.document.fund === 'object'
+    typeof lastName.document.fund === 'object' &&
+    lastName.document.fund
   ) {
     docName = `${lastName.document.archive.shortName}_${lastName.document.fund.shortName}_${!!lastName.document.description ? lastName.document.description : '-'}_${lastName.document.case}_${lastName.document.page}${lastName.document.reverseSide ? 'зв' : ''}`;
 
