@@ -203,14 +203,15 @@ export interface Document {
   id: number;
   media?: (number | null) | MediaDocument;
   archive: number | Archive;
-  fund: number | Fund;
-  docName?: string | null;
+  fund?: (number | null) | Fund;
   description?: number | null;
   case: number;
+  docName?: string | null;
   page: number;
   reverseSide: boolean;
   publicComment?: string | null;
   privateComment?: string | null;
+  title?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -261,6 +262,7 @@ export interface LastName {
   address?: string | null;
   populationGroup?: string | null;
   socialStatus?: string | null;
+  documentNumber?: string | null;
   updatedAt: string;
   createdAt: string;
 }

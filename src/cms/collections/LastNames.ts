@@ -90,5 +90,13 @@ export const LastNames: CollectionConfig = {
         uk: 'Соціальний статус / походження',
       },
     },
+    {
+      type: 'text',
+      name: 'documentNumber',
+      label: {
+        en: 'Document number',
+        uk: 'Номер за документом',
+      },
+    },
   ],
 };

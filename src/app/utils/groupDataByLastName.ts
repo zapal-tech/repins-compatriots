@@ -43,6 +43,7 @@ export const groupDataByLastName = async ({ lastNames }: GroupDataByLastNameProp
       if (
         item.document &&
         typeof item.document === 'object' &&
+        item.document.fund &&
         typeof item.document.archive === 'object' &&
         typeof item.document.fund === 'object'
       ) {

@@ -4,14 +4,16 @@ import { AdminPanelGroup, Collection, CollectionLabel } from '@cms/types';
 
 import { allAdminAccess, anyAdminAdminUIAccess, rootAccess, rootAndAdminAdminUIAccess } from '@cms/access';
 
-import { allAdminAndUserAccess } from './Users/access';
+import { allAdminAndUserAccess } from '../Users/access';
+
+import { afterChangeHook } from './hooks/afterChange';
 
 export const Documents: CollectionConfig = {
   slug: Collection.Documents,
   labels: CollectionLabel.Documents,
   admin: {
     group: AdminPanelGroup.General,
-    useAsTitle: 'docName',
+    useAsTitle: 'title',
   },
   access: {
     admin: anyAdminAdminUIAccess,
@@ -19,6 +21,9 @@ export const Documents: CollectionConfig = {
     delete: rootAccess,
     read: allAdminAndUserAccess,
     update: rootAndAdminAdminUIAccess,
+  },
+  hooks: {
+    afterChange: [afterChangeHook],
   },
   fields: [
     {
@@ -38,6 +43,9 @@ export const Documents: CollectionConfig = {
           type: 'relationship',
           relationTo: Collection.Archives,
           required: true,
+          admin: {
+            width: '50%',
+          },
           label: {
             en: 'Archive',
             uk: 'Архів',
@@ -52,22 +60,21 @@ export const Documents: CollectionConfig = {
             en: 'Fund',
             uk: 'Фонд',
           },
+          admin: {
+            width: '50%',
+            condition: (data) => {
+              if (data.archive) {
+                return true;
+              } else {
+                return false;
+              }
+            },
+          },
           filterOptions: ({ data }) => {
-            if (data['archive']) {
-              return { archive: { in: [data['archive']] } };
-            }
-            return { archive: { in: [] } };
+            return { archive: { in: [data['archive']] } };
           },
         },
       ],
-    },
-    {
-      name: 'docName',
-      type: 'text',
-      label: {
-        en: 'Document name',
-        uk: 'Назва документу',
-      },
     },
     {
       type: 'row',
@@ -75,6 +82,9 @@ export const Documents: CollectionConfig = {
         {
           name: 'description',
           type: 'number',
+          admin: {
+            width: '50%',
+          },
           label: {
             en: 'Description',
             uk: 'Опис',
@@ -84,14 +94,36 @@ export const Documents: CollectionConfig = {
           name: 'case',
           type: 'number',
           required: true,
+          admin: {
+            width: '50%',
+          },
           label: {
             en: 'Case',
             uk: 'Справа',
           },
         },
+      ],
+    },
+    {
+      type: 'row',
+      fields: [
+        {
+          name: 'docName',
+          type: 'text',
+          admin: {
+            width: '50%',
+          },
+          label: {
+            en: 'Document name',
+            uk: 'Назва документу',
+          },
+        },
         {
           name: 'page',
           type: 'number',
+          admin: {
+            width: '50%',
+          },
           label: {
             en: 'Page',
             uk: 'Аркуш',
@@ -125,6 +157,11 @@ export const Documents: CollectionConfig = {
         en: 'Private comment',
         uk: 'Приватний коментар',
       },
+    },
+    {
+      type: 'text',
+      hidden: true,
+      name: 'title',
     },
   ],
 };
