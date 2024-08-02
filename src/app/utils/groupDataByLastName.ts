@@ -38,6 +38,8 @@ export const groupDataByLastName = async ({ lastNames }: GroupDataByLastNameProp
         title: '-',
       };
 
+      const town = typeof item.town === 'object' ? item.town?.name : null;
+
       if (
         item.document &&
         typeof item.document === 'object' &&
@@ -62,7 +64,7 @@ export const groupDataByLastName = async ({ lastNames }: GroupDataByLastNameProp
               title: item.year?.toString() || '-',
             },
             {
-              title: item.town || '-',
+              title: town || '-',
             },
             {
               title: item.address || '-',
