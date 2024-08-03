@@ -5,6 +5,7 @@ import {
   FeatureProviderServer,
   HeadingFeature,
   InlineCodeFeature,
+  InlineToolbarFeature,
   ItalicFeature,
   lexicalEditor,
   LinkFeature,
@@ -66,6 +67,7 @@ export const baseEditorFeatures: FeatureProviderServer<any, any>[] = [
   }),
   // @ts-ignore
   UploadFeature(),
+  InlineToolbarFeature(),
 ];
 
 export const editor = lexicalEditor({
