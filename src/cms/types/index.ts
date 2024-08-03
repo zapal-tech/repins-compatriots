@@ -7,7 +7,7 @@ export enum UserRole {
 }
 
 // TS Enum values must be of string or number type
-export const AdminPanelGroup: Record<'General' | 'Media', Record<Locale, string>> = {
+export const AdminPanelGroup: Record<'General' | 'Media' | 'Content', Record<Locale, string>> = {
   General: {
     en: 'General',
     uk: 'Загальне',
@@ -15,6 +15,10 @@ export const AdminPanelGroup: Record<'General' | 'Media', Record<Locale, string>
   Media: {
     en: 'Media',
     uk: 'Медіа',
+  },
+  Content: {
+    en: 'Content',
+    uk: 'Контент',
   },
 } as const;
 
