@@ -54,7 +54,6 @@ export const hero = (): Field => ({
     },
     richText({
       name: 'richText',
-      required: true,
       localized: true,
       admin: {
         condition: (_, { type } = {}) => ![HeroType.None].includes(type),
