@@ -8,10 +8,10 @@ import { getLocalApi } from '@app/utils/localApi';
 import { generateMeta } from '@app/utils/seo';
 import { getPathFromSlugArr, getSlugArrFromPath } from '@app/utils/slug';
 
-// import { Gutter } from '@app/components/Gutter';
-// import { Hero } from '@app/components/Hero';
-// import { PageGutter } from '@app/components/PageGutter';
-// import { RichText } from '@app/components/RichText';
+import { Gutter } from '@app/components/Gutter';
+import { Hero } from '@app/components/Hero';
+import { PageGutter } from '@app/components/PageGutter';
+import { RichText } from '@app/components/RichText';
 
 import { Collection } from '@cms/types';
 import type { Page } from '@cms/types/generated-types';
@@ -64,13 +64,13 @@ const Page = async ({ params: { slug, locale } }: PageProps) => {
 
   return (
     <>
-      {/* <Hero {...page.hero} />
+      <Hero {...page.hero} />
 
       <PageGutter>
         <Gutter>
           <RichText>{page.content}</RichText>
         </Gutter>
-      </PageGutter> */}
+      </PageGutter>
     </>
   );
 };
