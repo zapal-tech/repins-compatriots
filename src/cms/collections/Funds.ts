@@ -10,7 +10,7 @@ export const Funds: CollectionConfig = {
   slug: Collection.Funds,
   labels: CollectionLabel.Funds,
   admin: {
-    group: AdminPanelGroup.General,
+    group: AdminPanelGroup.Content,
     useAsTitle: 'name',
   },
   access: {

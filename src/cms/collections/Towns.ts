@@ -10,7 +10,7 @@ export const Towns: CollectionConfig = {
   slug: Collection.Towns,
   labels: CollectionLabel.Towns,
   admin: {
-    group: AdminPanelGroup.General,
+    group: AdminPanelGroup.Content,
     useAsTitle: 'name',
   },
   access: {

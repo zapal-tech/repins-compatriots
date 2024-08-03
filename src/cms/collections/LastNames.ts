@@ -10,7 +10,7 @@ export const LastNames: CollectionConfig = {
   slug: Collection.LastNames,
   labels: CollectionLabel.LastNames,
   admin: {
-    group: AdminPanelGroup.General,
+    group: AdminPanelGroup.Content,
     useAsTitle: 'lastName',
   },
   access: {
