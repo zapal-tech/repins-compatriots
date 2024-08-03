@@ -40,6 +40,7 @@ import ukTranslation from '@cms/locales/uk';
 import { cmsLocales } from '@cms/i18n';
 
 import { editor } from '@cms/editor';
+import { seedFromGoogleSheets } from '@cms/utils/seedFromGoogleSheets';
 import { generateTitle } from '@cms/utils/seo';
 import { generatePublicFileURL } from '@cms/utils/storage';
 
@@ -232,6 +233,10 @@ const payloadConfig: Config = {
         });
       }
     }
+
+    const existingLastNames = await payload.find({ collection: Collection.LastNames, limit: 1 });
+
+    // if (existingLastNames.docs.length === 0) await seedFromGoogleSheets(payload);
   },
   telemetry: isDev,
   // graphQL: { schemaOutputFile: path.resolve(dirname, 'src', 'cms', 'graphql', 'generated-schema.graphql') },
