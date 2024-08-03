@@ -19,6 +19,14 @@ const tailwindConfig: Config = {
     'text-center',
     'text-end',
     'text-justify',
+    // Rich text columns
+    'xl:grid-cols-1',
+    'xl:grid-cols-2',
+    'xl:grid-cols-3',
+    'xl:grid-cols-4',
+    'xl:col-span-1',
+    'xl:col-span-2',
+    'xl:col-span-3',
   ],
   theme: {
     screens: {

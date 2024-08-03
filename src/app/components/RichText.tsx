@@ -10,8 +10,8 @@ export const RichText: React.FC<
 > = ({ children, className, invert, ...props }) => (
   <div
     className={clsx(
-      'prose prose-p:text-base prose-a:decoration-transparent lg:prose-p:text-base-desktop mx-auto max-w-5xl',
-      invert && 'prose-invert',
+      'mx-auto max-w-5xl flex-col gap-y-16 xl:gap-y-24',
+      // invert && 'prose-invert',
       className,
     )}
     {...props}
@@ -31,9 +31,9 @@ export const RichText: React.FC<
               .map(([, value]) => value);
 
             return (
-              <div className={`grid grid-cols-1 gap-x-5 xl:grid-cols-${gridSize}`}>
+              <div className={`grid grid-cols-1 gap-x-5 gap-y-6 xl:grid-cols-${gridSize}`}>
                 {columns.map((column, idx) => (
-                  <div key={`column-${idx}`} className={`xl:col-span-${columnsSizes[idx]}`}>
+                  <div key={`column-${idx}`} className={`xl:col-span-${columnsSizes[idx]} flex flex-col gap-6`}>
                     <LexicalRenderer>{column}</LexicalRenderer>
                   </div>
                 ))}
