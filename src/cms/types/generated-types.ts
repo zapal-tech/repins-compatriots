@@ -201,17 +201,17 @@ export interface User {
  */
 export interface Document {
   id: number;
+  title?: string | null;
   media?: (number | null) | MediaDocument;
   archive: number | Archive;
   fund?: (number | null) | Fund;
   description?: number | null;
-  case: number;
+  case: string;
   docName?: string | null;
   page: number;
   reverseSide: boolean;
   publicComment?: string | null;
   privateComment?: string | null;
-  title?: string | null;
   updatedAt: string;
   createdAt: string;
 }
