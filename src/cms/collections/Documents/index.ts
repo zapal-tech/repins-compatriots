@@ -6,13 +6,13 @@ import { allAdminAccess, anyAdminAdminUIAccess, rootAccess, rootAndAdminAdminUIA
 
 import { allAdminAndUserAccess } from '../Users/access';
 
-import { afterChangeHook } from './hooks/afterChange';
+import { beforeChangeHook } from './hooks/beforeChange';
 
 export const Documents: CollectionConfig = {
   slug: Collection.Documents,
   labels: CollectionLabel.Documents,
   admin: {
-    group: AdminPanelGroup.General,
+    group: AdminPanelGroup.Content,
     useAsTitle: 'title',
   },
   access: {
@@ -23,9 +23,16 @@ export const Documents: CollectionConfig = {
     update: rootAndAdminAdminUIAccess,
   },
   hooks: {
-    afterChange: [afterChangeHook],
+    beforeChange: [beforeChangeHook],
   },
   fields: [
+    {
+      type: 'text',
+      name: 'title',
+      admin: {
+        readOnly: true,
+      },
+    },
     {
       type: 'relationship',
       name: 'media',
@@ -92,7 +99,7 @@ export const Documents: CollectionConfig = {
         },
         {
           name: 'case',
-          type: 'number',
+          type: 'text',
           required: true,
           admin: {
             width: '50%',
@@ -157,11 +164,6 @@ export const Documents: CollectionConfig = {
         en: 'Private comment',
         uk: 'Приватний коментар',
       },
-    },
-    {
-      type: 'text',
-      hidden: true,
-      name: 'title',
     },
   ],
 };
