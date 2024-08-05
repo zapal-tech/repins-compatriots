@@ -29,7 +29,7 @@ export const nestedNavigation = ({
     name,
     type: 'array',
     fields: [link({ appearances: false })],
-    maxRows: isTopLevel ? 6 : 8,
+    maxRows: isTopLevel ? 7 : 8,
     localized: isTopLevel ? true : undefined,
     required,
     admin:
