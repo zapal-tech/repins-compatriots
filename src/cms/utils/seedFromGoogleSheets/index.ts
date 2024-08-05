@@ -53,7 +53,7 @@ export const seedFromGoogleSheets = async (payload: BasePayload) => {
           men: (await sheet.getCell(rowIdx, sheetsIdx < 7 ? 15 : 15 + 1)).value,
           women: (await sheet.getCell(rowIdx, sheetsIdx < 7 ? 16 : 16 + 1)).value,
         };
-        if (sheetsIdx === 7) {
+        if (sheetsIdx === 7 && !!docData.address && !!(await sheet.getCell(rowIdx, 5)).value) {
           docData.address = docData.address + ', ' + (await sheet.getCell(rowIdx, 5)).value;
         }
 
