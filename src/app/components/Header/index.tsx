@@ -14,6 +14,7 @@ import { Gutter } from '../Gutter';
 import { Logo } from '../Logo';
 import { Text } from '../Text';
 
+import { LanguageSwitcher } from './LanguageSwitcher';
 import { MobileMenuButton } from './MobileMenuButton';
 
 type HeaderProps = {
@@ -48,9 +49,9 @@ export const Header: React.FC<HeaderProps> = async ({ locale }) => {
         <MobileMenuButton />
 
         <nav
-          className="fixed left-full top-12 h-[calc(100lvh-3rem)] w-full items-center justify-between gap-y-7
+          className="fixed left-full top-12 flex h-[calc(100lvh-3rem)] w-full flex-col justify-between gap-y-7
             bg-white-orchid px-4 py-7 opacity-0 transition-all duration-300 xl:static xl:left-auto xl:top-auto xl:flex
-            xl:h-auto xl:w-auto xl:p-0 xl:opacity-100"
+            xl:h-auto xl:w-full xl:flex-row xl:p-0 xl:opacity-100"
           id={mobileMenuId}
         >
           <ul className="flex flex-col gap-x-8 gap-y-4 xl:flex-row">
@@ -63,32 +64,34 @@ export const Header: React.FC<HeaderProps> = async ({ locale }) => {
             ))}
           </ul>
 
+          <LanguageSwitcher activeLocale={locale} />
+
           <ul className="flex flex-col gap-y-4 xl:hidden">
             {settings.viberUrl && (
               <li>
                 <Text className="transition-colors hover:text-mallard">
-                  <Link href={settings.viberUrl} />
+                  <Link href={settings.viberUrl}>Viber</Link>
                 </Text>
               </li>
             )}
             {settings.whatsappUrl && (
               <li>
                 <Text className="transition-colors hover:text-mallard">
-                  <Link href={settings.whatsappUrl} />
+                  <Link href={settings.whatsappUrl}>WhatsApp</Link>
                 </Text>
               </li>
             )}
             {settings.instagramUrl && (
               <li>
                 <Text className="transition-colors hover:text-mallard">
-                  <Link href={settings.instagramUrl} />
+                  <Link href={settings.instagramUrl}>Instagram</Link>
                 </Text>
               </li>
             )}
             {settings.facebookUrl && (
               <li>
                 <Text className="transition-colors hover:text-mallard">
-                  <Link href={settings.facebookUrl} />
+                  <Link href={settings.facebookUrl}>Facebook</Link>
                 </Text>
               </li>
             )}
