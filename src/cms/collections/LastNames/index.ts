@@ -4,7 +4,9 @@ import { AdminPanelGroup, Collection, CollectionLabel } from '@cms/types';
 
 import { allAdminAccess, anyAdminAdminUIAccess, rootAccess, rootAndAdminAdminUIAccess } from '@cms/access';
 
-import { allAdminAndUserAccess } from './Users/access';
+import { allAdminAndUserAccess } from '../Users/access';
+
+import { SendEmailHelpRead } from './endpoints/send-email-help-read';
 
 export const LastNames: CollectionConfig = {
   slug: Collection.LastNames,
@@ -20,6 +22,13 @@ export const LastNames: CollectionConfig = {
     read: allAdminAndUserAccess,
     update: rootAndAdminAdminUIAccess,
   },
+  endpoints: [
+    {
+      path: '/send-email-help-read',
+      method: 'post',
+      handler: SendEmailHelpRead,
+    },
+  ],
   fields: [
     {
       name: 'lastName',
