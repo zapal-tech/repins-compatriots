@@ -50,7 +50,10 @@ const Search = async ({ params: { locale }, searchParams: { search } }: SearchPr
             <Text>{dict.search.content.description}</Text>
           </div>
 
-          <Link href="/search" className="h-max w-max rounded-full border border-mallard px-5 py-4 text-mallard">
+          <Link
+            href="/search-instruction"
+            className="h-max w-max rounded-full border border-mallard px-5 py-4 text-mallard"
+          >
             {dict.search.content.linkText}
           </Link>
         </div>
