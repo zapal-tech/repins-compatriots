@@ -8,7 +8,7 @@ export type InputProps = {
   defaultValue?: string;
   name: string;
   id?: string;
-  type: 'text' | 'email' | 'password';
+  type: 'text' | 'email' | 'password' | 'tel' | 'hidden';
   className?: string;
   required?: boolean;
 };
