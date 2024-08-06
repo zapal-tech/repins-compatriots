@@ -111,9 +111,16 @@ const CheckDoc = async ({ params: { locale }, searchParams: { token } }: CheckDo
           <Media className="mb-6 size-full overflow-hidden" imgClassName="w-full" resource={media} unoptimized />
         )}
 
+        <Text className="mb-4 w-full">
+          {dict.checkDoc.documentNumber}:{lastName.documentNumber}
+        </Text>
+
         <Text className="mb-12 w-full">{publicComment}</Text>
 
-        <Link href="/search" className="mb-24 block w-full rounded-full bg-mallard p-5 text-center text-gray-50">
+        <Link
+          href={`/check-doc/help-read?token=${token}`}
+          className="mb-24 block w-full rounded-full bg-mallard p-5 text-center text-gray-50"
+        >
           <Text size="h3">{dict.checkDoc.helpRead}</Text>
         </Link>
       </Gutter>

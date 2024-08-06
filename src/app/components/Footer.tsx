@@ -39,13 +39,15 @@ export const Footer: React.FC<FooterProps> = async ({ locale }) => {
 
   return (
     <footer className="mt-auto w-full pb-8 xl:pb-14">
-      <GridWithGutter gridClassName="h-max gap-6">
-        <div className="grid place-items-center xl:col-span-3">
+      <GridWithGutter gridClassName="h-max gap-6 sm:grid-cols-2 md:grid-cols-8">
+        <div className="grid place-items-center md:col-span-2 xl:col-span-3">
           <Logo fill="#1C3516" className="w-2/3" />
         </div>
 
-        <div className="gap-5 xl:col-span-3">
-          <Text tag="h2">{dict.footer.navigation}</Text>
+        <div className="gap-5 md:col-span-2 xl:col-span-3">
+          <Text tag="h2" className="mb-6">
+            {dict.footer.navigation}
+          </Text>
 
           <ul className="col-span-full flex flex-col gap-5">
             {(footer.navigation || []).map(({ link, id }) => (
@@ -58,8 +60,10 @@ export const Footer: React.FC<FooterProps> = async ({ locale }) => {
           </ul>
         </div>
 
-        <div className="gap-5 xl:col-span-3">
-          <Text tag="h2">{dict.footer.contacts}</Text>
+        <div className="gap-5 md:col-span-2 xl:col-span-3">
+          <Text tag="h2" className="mb-6">
+            {dict.footer.contacts}
+          </Text>
 
           <ul className="col-span-full flex flex-col gap-5">
             {settings.email && (
@@ -80,8 +84,10 @@ export const Footer: React.FC<FooterProps> = async ({ locale }) => {
           </ul>
         </div>
 
-        <div className="gap-5 xl:col-span-3">
-          <Text tag="h2">{dict.footer.messengers}</Text>
+        <div className="gap-5 md:col-span-2 xl:col-span-3">
+          <Text tag="h2" className="mb-6">
+            {dict.footer.messengers}
+          </Text>
 
           <ul className="col-span-full flex flex-col gap-5">
             {settings.viberUrl && (
