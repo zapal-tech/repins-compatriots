@@ -31,5 +31,20 @@ export default {
   },
   checkDoc: {
     helpRead: 'Help read',
+    documentNumber: 'Sequence number',
+    form: {
+      title: 'Fill it out so we can help',
+      firstName: 'First name',
+      lastName: 'Lirst name',
+      phone: 'Phone',
+      email: 'Email',
+      comment: 'Comment',
+      submit: 'Send',
+      message: {
+        sending: 'Sending...',
+        error: 'Something went wrong. Try again later',
+        done: 'Request sent successfully',
+      },
+    },
   },
 } as const;
