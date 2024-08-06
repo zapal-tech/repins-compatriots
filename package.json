@@ -13,7 +13,7 @@
     "dev:turbo": "next dev --turbo",
     "payload": "NODE_OPTIONS=--no-deprecation payload",
     "build": "pnpm env:load && next build",
-    "build:prod": "pnpm env:load && payload migrate && next build",
+    "build:prod": "pnpm env:load && pnpm payload migrate && next build",
     "start": "pnpm env:load && next start",
     "lint": "pnpm lint:types && pnpm lint:next",
     "lint:next": "next lint",
