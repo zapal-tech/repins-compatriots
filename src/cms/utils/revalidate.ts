@@ -20,6 +20,7 @@ export const revalidate = async ({
     }
 
     revalidateTag(`${collection}_${slug}`);
+    if (slug === 'home') revalidatePath('/(app)/[locale]', 'page');
 
     payload.logger.info(`Revalidated page '${slug}' in collection '${collection}'`);
 
