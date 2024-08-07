@@ -26,13 +26,13 @@ export const CMSLink: React.FC<CMSLinkProps> = ({
   noFollow,
   onClick,
   doc,
-  type = LinkType.Custom,
+  linkType = LinkType.Custom,
   url,
   ref,
 }) => {
   let href = url;
 
-  if (type === LinkType.Internal && typeof doc?.value === 'object' && doc?.value?.slug) {
+  if (linkType === LinkType.Internal && typeof doc?.value === 'object' && doc?.value?.slug) {
     const { breadcrumbs, slug } = (doc.value as any) || { breadcrumbs: [], slug: '' };
 
     const collectionPrefix: Record<string, string> = {

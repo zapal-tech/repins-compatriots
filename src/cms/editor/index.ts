@@ -23,6 +23,7 @@ import { RichTextAdapterProvider } from 'payload';
 import { link } from '@cms/fields/link';
 
 import { Collection } from '@cms/types';
+import { LinkAppearance } from '@cms/types/fields/link';
 
 import { columnsBlock } from './blocks/columns';
 
@@ -33,7 +34,7 @@ export const baseHeadingFeature = HeadingFeature({
 const linkFields = link({ appearances: ['default', 'primary', 'secondary'] }).fields.map((field) => {
   if (field.type === 'row') {
     field.fields.forEach((subField) => {
-      if ((subField as any).name === 'label') {
+      if ((subField as any).name === 'text') {
         (subField as any).name = 'text';
         (subField as any).label = {
           en: 'Text to display',
@@ -63,7 +64,25 @@ export const baseEditorFeatures: FeatureProviderServer<any, any>[] = [
   // @ts-ignore
   LinkFeature({
     enabledCollections: [Collection.Pages],
-    fields: () => linkFields,
+    fields: ({ defaultFields }) => [
+      ...defaultFields,
+      {
+        name: 'appearance',
+        label: {
+          en: 'Appearance',
+          uk: 'Вигляд',
+        },
+        type: 'select',
+        defaultValue: 'default' as LinkAppearance,
+        options: ['default', 'primary', 'secondary'],
+        admin: {
+          description: {
+            en: 'Choose how the link should be rendered.',
+            uk: 'Оберіть, як посилання має бути відображене.',
+          },
+        },
+      },
+    ],
   }),
   // @ts-ignore
   UploadFeature(),

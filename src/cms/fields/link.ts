@@ -39,7 +39,7 @@ export const link: LinkField = ({ appearances, disableLabel = false, ...override
         type: 'row',
         fields: [
           {
-            name: 'type',
+            name: 'linkType',
             type: 'radio',
             options: [
               {

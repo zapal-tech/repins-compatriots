@@ -64,7 +64,7 @@ export const LexicalRenderer = <
       link: ({ fields, children }) => (
         <CMSLink
           {...fields}
-          type={fields.linkType}
+          linkType={fields.linkType}
           doc={fields.linkType === LinkType.Internal ? (fields.doc as LinkData['doc']) : undefined}
           url={fields.linkType === LinkType.Internal ? '' : fields.url}
         >

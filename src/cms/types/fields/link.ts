@@ -35,7 +35,7 @@ export type LinkData = {
     relationTo: Collection | string;
     value: Page | number;
   } | null;
-  type?: LinkType | string;
+  linkType?: LinkType | string;
   url?: string | null;
   // locale?: Locale | string;
 };

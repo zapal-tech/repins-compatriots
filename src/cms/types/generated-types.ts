@@ -385,7 +385,7 @@ export interface Header {
   id: number;
   navItems: {
     link: {
-      type: 'internal' | 'custom';
+      linkType: 'internal' | 'custom';
       newTab: boolean;
       noFollow: boolean;
       doc?: {
@@ -408,7 +408,7 @@ export interface Footer {
   id: number;
   navigation: {
     link: {
-      type: 'internal' | 'custom';
+      linkType: 'internal' | 'custom';
       newTab: boolean;
       noFollow: boolean;
       doc?: {
