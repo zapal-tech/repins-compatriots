@@ -1,11 +1,10 @@
 'use client';
 
-// import i18nConfig from 'i18nConfig';
 import { usePathname, useRouter } from 'next/navigation';
 
 import { defaultLocale, Locale } from '@shared/i18n';
 
-import { NavigationLink } from './NavigationLink';
+import { LanguageSwitcherButton } from './LanguageSwitcherButton';
 
 const localeLabels: Record<Locale, string> = {
   [Locale.Ukrainian]: 'Укр',
@@ -39,19 +38,18 @@ export const LanguageSwitcher: React.FC<{ activeLocale?: Locale }> = ({ activeLo
   return (
     <ul className="group flex gap-4 pb-4 xl:order-none xl:mt-0 xl:pb-0">
       <li>
-        <NavigationLink
+        <LanguageSwitcherButton
           onClick={() => handleChange(Locale.Ukrainian)}
           active={activeLocale === Locale.Ukrainian}
-          button
         >
           {localeLabels[Locale.Ukrainian]}
-        </NavigationLink>
+        </LanguageSwitcherButton>
       </li>
 
       <li>
-        <NavigationLink onClick={() => handleChange(Locale.English)} active={activeLocale === Locale.English} button>
+        <LanguageSwitcherButton onClick={() => handleChange(Locale.English)} active={activeLocale === Locale.English}>
           {localeLabels[Locale.English]}
-        </NavigationLink>
+        </LanguageSwitcherButton>
       </li>
     </ul>
   );

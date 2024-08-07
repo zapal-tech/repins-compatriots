@@ -5,6 +5,7 @@ import { nestedNavigation } from '@cms/fields';
 import { AdminPanelGroup, Global, GlobalLabel } from '@cms/types';
 
 import { anyAdminAccess } from '@cms/access';
+import { revalidateAll } from '@cms/utils/revalidate';
 
 export const Footer: GlobalConfig = {
   slug: Global.Footer,
@@ -15,6 +16,13 @@ export const Footer: GlobalConfig = {
   },
   admin: {
     group: AdminPanelGroup.General,
+  },
+  hooks: {
+    afterChange: [
+      () => {
+        revalidateAll();
+      },
+    ],
   },
   fields: [
     nestedNavigation({

@@ -10,16 +10,15 @@ import { RichText } from '../RichText';
 export const Hero: React.FC<Page['hero']> = ({ media, richText, type }) => {
   if (type === 'none') return null;
 
-  const containerStyles = {
-    lg: 'h-[100vh]',
-    md: 'h-max min-h-64',
-    sm: '',
-  };
-  const containerStyle = containerStyles[type];
-
   return (
     <div className="relative pt-12 xl:pt-20">
-      <div className={clsx('relative', containerStyle)}>
+      <div
+        className={clsx('relative', {
+          'h-[100vh]': [HeroType.Large === type],
+          'h-max min-h-64': [HeroType.Medium === type],
+          '': [HeroType.Small === type],
+        })}
+      >
         {[HeroType.Large, HeroType.Medium].includes(type as HeroType) && media && typeof media === 'object' ? (
           <Media
             className="size-full overflow-hidden"

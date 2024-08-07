@@ -1,4 +1,4 @@
-import { revalidateTag } from 'next/cache';
+import { revalidatePath, revalidateTag } from 'next/cache';
 import { Payload } from 'payload';
 
 import { Collection } from '@cms/types';
@@ -26,6 +26,18 @@ export const revalidate = async ({
     return true;
   } catch (error: unknown) {
     payload.logger.error(`Error hitting revalidate route for page '${slug}' in collection '${collection}': ${error}`);
+
+    return false;
+  }
+};
+
+export const revalidateAll = async (): Promise<boolean> => {
+  try {
+    revalidatePath('/', 'layout');
+
+    return true;
+  } catch (error: unknown) {
+    console.error(`Error hitting revalidate route for all pages: ${error}`);
 
     return false;
   }

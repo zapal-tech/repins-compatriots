@@ -7,15 +7,24 @@ import { deepMerge } from '@shared/utils';
 
 export const appearanceOptions: Record<LinkAppearance, LinkAppearanceOption> = {
   primary: {
-    label: 'Primary Button',
+    label: {
+      en: 'Primary Button',
+      uk: 'Основна кнопка',
+    },
     value: 'primary',
   },
   secondary: {
-    label: 'Secondary Button',
+    label: {
+      en: 'Secondary Button',
+      uk: 'Другорядна кнопка',
+    },
     value: 'secondary',
   },
   default: {
-    label: 'Default',
+    label: {
+      en: 'Default link',
+      uk: 'Звичайне посилання',
+    },
     value: 'default',
   },
 };

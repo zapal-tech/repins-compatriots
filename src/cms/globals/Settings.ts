@@ -5,6 +5,7 @@ import { url } from '@cms/fields';
 import { AdminPanelGroup, Global, GlobalLabel } from '@cms/types';
 
 import { anyAdminAccess } from '@cms/access';
+import { revalidateAll } from '@cms/utils/revalidate';
 
 import { cmsSenderEmail } from '@shared/email';
 
@@ -18,6 +19,13 @@ export const Settings: GlobalConfig = {
   },
   admin: {
     group: AdminPanelGroup.General,
+  },
+  hooks: {
+    afterChange: [
+      () => {
+        revalidateAll();
+      },
+    ],
   },
   fields: [
     {
