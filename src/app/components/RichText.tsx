@@ -10,7 +10,7 @@ export const RichText: React.FC<
 > = ({ children, className, invert, ...props }) => (
   <div
     className={clsx(
-      'mx-auto max-w-5xl flex-col gap-y-16 xl:gap-y-24',
+      'mx-auto w-full flex-col gap-y-16 xl:gap-y-24',
       // invert && 'prose-invert',
       className,
     )}
