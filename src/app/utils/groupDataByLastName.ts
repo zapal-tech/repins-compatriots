@@ -28,7 +28,7 @@ export type GroupData = {
 
 export const redirectToDocument = (data: string | number) => {
   const token = jwtEncode({ data });
-  return redirect(`${process.env.NEXT_PUBLIC_SITE_URL}/check-doc?token=${encodeURIComponent(token)}`);
+  return `${process.env.NEXT_PUBLIC_SITE_URL}/check-doc?token=${encodeURIComponent(token)}`;
 };
 
 export const groupDataByLastName = async ({ lastNames }: GroupDataByLastNameProps): Promise<GroupData[]> => {

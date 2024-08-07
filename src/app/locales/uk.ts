@@ -6,6 +6,7 @@ export default {
   },
   search: {
     table: {
+      lastName: 'Прізвище',
       originalLastName: 'Прізвище (мовою оригінала документу)',
       year: 'Рік фіксації інформації',
       town: 'Населений пункт',

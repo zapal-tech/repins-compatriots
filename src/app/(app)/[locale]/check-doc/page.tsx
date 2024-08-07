@@ -85,7 +85,6 @@ const CheckDoc = async ({ params: { locale }, searchParams: { token } }: CheckDo
   if (
     lastName.document &&
     typeof lastName.document === 'object' &&
-    lastName.document.media &&
     typeof lastName.document.media === 'object' &&
     typeof lastName.document.archive === 'object' &&
     typeof lastName.document.fund === 'object' &&

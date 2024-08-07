@@ -6,6 +6,7 @@ export default {
   },
   search: {
     table: {
+      lastName: 'Last name',
       originalLastName: 'Last name( original from document)',
       year: 'The year of information fixation',
       town: 'Town',

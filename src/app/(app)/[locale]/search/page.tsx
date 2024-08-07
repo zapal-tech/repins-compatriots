@@ -67,7 +67,7 @@ const Search = async ({ params: { locale }, searchParams: { search } }: SearchPr
                   {item.title}
                 </Text>
 
-                <DocumentTable data={item.data} dict={dict} title={item.title} />
+                <DocumentTable data={item.data} dict={dict} />
               </div>
             ))
           : search && (
