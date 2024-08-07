@@ -41,13 +41,18 @@ export const LanguageSwitcher: React.FC<{ activeLocale?: Locale }> = ({ activeLo
         <LanguageSwitcherButton
           onClick={() => handleChange(Locale.Ukrainian)}
           active={activeLocale === Locale.Ukrainian}
+          button
         >
           {localeLabels[Locale.Ukrainian]}
         </LanguageSwitcherButton>
       </li>
 
       <li>
-        <LanguageSwitcherButton onClick={() => handleChange(Locale.English)} active={activeLocale === Locale.English}>
+        <LanguageSwitcherButton
+          onClick={() => handleChange(Locale.English)}
+          active={activeLocale === Locale.English}
+          button
+        >
           {localeLabels[Locale.English]}
         </LanguageSwitcherButton>
       </li>
