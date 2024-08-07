@@ -27,7 +27,7 @@ import { Collection } from '@cms/types';
 import { columnsBlock } from './blocks/columns';
 
 export const baseHeadingFeature = HeadingFeature({
-  enabledHeadingSizes: ['h2', 'h3', 'h4', 'h5'],
+  enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4', 'h5'],
 });
 
 const linkFields = link({ appearances: ['default', 'primary', 'secondary'] }).fields.map((field) => {
