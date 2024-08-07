@@ -3,6 +3,7 @@ import type { CollectionConfig } from 'payload';
 import { AdminPanelGroup, Collection, CollectionLabel } from '@cms/types';
 
 import { allAdminAccess, anyAdminAdminUIAccess, rootAccess, rootAndAdminAdminUIAccess } from '@cms/access';
+import { defaultPhotoMimeTypes } from '@cms/utils/mimeTypes';
 
 import { allAdminAndUserAccess } from './Users/access';
 
@@ -11,7 +12,7 @@ export const MediaDocuments: CollectionConfig = {
   labels: CollectionLabel.MediaDocuments,
   admin: {
     group: AdminPanelGroup.Media,
-    useAsTitle: 'media',
+    useAsTitle: 'alt',
   },
   access: {
     admin: anyAdminAdminUIAccess,
@@ -20,15 +21,26 @@ export const MediaDocuments: CollectionConfig = {
     read: allAdminAndUserAccess,
     update: rootAndAdminAdminUIAccess,
   },
+  upload: {
+    formatOptions: { format: 'webp', options: { quality: 80 } },
+    mimeTypes: defaultPhotoMimeTypes,
+    imageSizes: [
+      {
+        name: 'size_400',
+        width: 400,
+        formatOptions: { format: 'webp', options: { quality: 80 } },
+      },
+      {
+        name: 'size_1280',
+        width: 1280,
+        formatOptions: { format: 'webp', options: { quality: 80 } },
+      },
+    ],
+  },
   fields: [
     {
-      type: 'upload',
-      name: 'media',
-      label: {
-        en: 'Media',
-        uk: 'Медіа',
-      },
-      relationTo: Collection.Media,
+      name: 'alt',
+      type: 'text',
     },
   ],
 };

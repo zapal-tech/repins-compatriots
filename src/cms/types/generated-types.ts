@@ -202,7 +202,7 @@ export interface User {
 export interface Document {
   id: number;
   title?: string | null;
-  media?: (number | null) | MediaDocument;
+  media?: number | MediaDocument | null;
   archive: number | Archive;
   fund?: (number | null) | Fund;
   description?: number | null;
@@ -221,9 +221,37 @@ export interface Document {
  */
 export interface MediaDocument {
   id: number;
-  media?: number | Media | null;
+  alt?: string | null;
+  prefix?: string | null;
   updatedAt: string;
   createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+  sizes?: {
+    size_400?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    size_1280?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+  };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

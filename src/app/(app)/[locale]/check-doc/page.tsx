@@ -14,7 +14,7 @@ import { Text } from '@app/components/Text';
 import { getDictionary } from '@app/i18n';
 
 import { Collection } from '@cms/types';
-import { LastName, Media as MediaType } from '@cms/types/generated-types';
+import { LastName, MediaDocument, Media as MediaType } from '@cms/types/generated-types';
 
 import { Locale } from '@shared/i18n';
 
@@ -79,12 +79,13 @@ const CheckDoc = async ({ params: { locale }, searchParams: { token } }: CheckDo
   if (!lastName) return notFound();
 
   let docName: string | null = null;
-  let media: MediaType | null = null;
+  let media: MediaDocument | null = null;
   let publicComment: string | null | undefined = null;
 
   if (
     lastName.document &&
     typeof lastName.document === 'object' &&
+    lastName.document.media &&
     typeof lastName.document.media === 'object' &&
     typeof lastName.document.archive === 'object' &&
     typeof lastName.document.fund === 'object' &&
@@ -92,10 +93,7 @@ const CheckDoc = async ({ params: { locale }, searchParams: { token } }: CheckDo
   ) {
     docName = `${lastName.document.archive.shortName}_${lastName.document.fund.shortName}_${!!lastName.document.description ? lastName.document.description : '-'}_${lastName.document.case}_${lastName.document.page}${lastName.document.reverseSide ? 'зв' : ''}`;
 
-    media =
-      lastName.document.media && lastName.document.media.media && typeof lastName.document.media.media === 'object'
-        ? lastName.document.media.media
-        : null;
+    media = lastName.document.media ? lastName.document.media : null;
 
     publicComment = lastName.document.publicComment;
   }

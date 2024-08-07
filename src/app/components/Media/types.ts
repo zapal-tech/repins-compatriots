@@ -1,7 +1,7 @@
 import type { ElementType, Ref } from 'react';
 import type { StaticImageData } from 'next/image';
 
-import type { Media as MediaType } from '@cms/types/generated-types';
+import type { MediaDocument, Media as MediaType } from '@cms/types/generated-types';
 
 export interface Props {
   alt?: string;
@@ -13,7 +13,7 @@ export interface Props {
   onLoad?: () => void;
   priority?: boolean; // for NextImage only
   ref?: Ref<HTMLImageElement | HTMLVideoElement | null>;
-  resource?: MediaType | number | null; // for Payload media
+  resource?: MediaType | MediaDocument | number | null; // for Payload media
   size?: string; // for NextImage only
   unoptimized?: boolean; // for NextImage only
   src?: StaticImageData; // for static media

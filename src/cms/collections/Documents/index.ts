@@ -34,7 +34,7 @@ export const Documents: CollectionConfig = {
       },
     },
     {
-      type: 'relationship',
+      type: 'upload',
       name: 'media',
       label: {
         en: 'Media',

@@ -142,6 +142,10 @@ const payloadConfig: Config = {
           generateFileURL: generatePublicFileURL,
           prefix: 'public/media',
         },
+        [Collection.MediaDocuments]: {
+          generateFileURL: generatePublicFileURL,
+          prefix: 'public/documents-media',
+        },
         [Collection.OpenGraphImages]: {
           generateFileURL: generatePublicFileURL,
           prefix: 'public/open-graph-images',
