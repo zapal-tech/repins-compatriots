@@ -28,6 +28,7 @@ export type LinkField = (
 
 export type LinkData = {
   appearance?: LinkAppearance;
+  arrow?: boolean;
   newTab?: boolean;
   noFollow?: boolean;
   text?: string | null;

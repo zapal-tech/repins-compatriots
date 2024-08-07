@@ -29,6 +29,7 @@ export const CMSLink: React.FC<CMSLinkProps> = ({
   linkType = LinkType.Custom,
   url,
   ref,
+  arrow,
 }) => {
   let href = url;
 
@@ -79,6 +80,7 @@ export const CMSLink: React.FC<CMSLinkProps> = ({
       newTab={newTab}
       noFollow={noFollow}
       onClick={onClick}
+      arrow={arrow}
     >
       {text && text}
       {children && children}
