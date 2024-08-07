@@ -26,6 +26,7 @@ import { Collection } from '@cms/types';
 import { LinkAppearance } from '@cms/types/fields/link';
 
 import { columnsBlock } from './blocks/columns';
+import { partnersBlock } from './blocks/partners';
 
 export const baseHeadingFeature = HeadingFeature({
   enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4', 'h5'],
@@ -98,7 +99,7 @@ export const baseEditorFeatures: FeatureProviderServer<any, any>[] = [
 ];
 
 export const editor = lexicalEditor({
-  features: [...baseEditorFeatures, baseHeadingFeature, BlocksFeature({ blocks: [columnsBlock] })],
+  features: [...baseEditorFeatures, baseHeadingFeature, BlocksFeature({ blocks: [columnsBlock, partnersBlock] })],
 }) as unknown as RichTextAdapterProvider<{}, any, any>;
 
 export const heroEditor = lexicalEditor({

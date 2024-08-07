@@ -1,5 +1,6 @@
 import { PayloadLexicalReactContent } from '@zapal/payload-lexical-react';
 import clsx from 'clsx';
+import Image from 'next/image';
 
 import { columnNamePrefix } from '@cms/editor/blocks/columns';
 
@@ -37,6 +38,48 @@ export const RichText: React.FC<
                     <LexicalRenderer>{column}</LexicalRenderer>
                   </div>
                 ))}
+              </div>
+            );
+          },
+          partners: ({ fields }: any = {}) => {
+            return (
+              <div className="flex flex-wrap gap-x-20 gap-y-10 xl:justify-between">
+                <Image
+                  src={process.env.NEXT_PUBLIC_SITE_URL + '/partners/1.png'}
+                  alt={'partners'}
+                  width={190}
+                  height={56}
+                />
+                <Image
+                  src={process.env.NEXT_PUBLIC_SITE_URL + '/partners/2.png'}
+                  alt={'partners'}
+                  width={140}
+                  height={56}
+                />
+                <Image
+                  src={process.env.NEXT_PUBLIC_SITE_URL + '/partners/3.png'}
+                  alt={'partners'}
+                  width={114}
+                  height={56}
+                />
+                <Image
+                  src={process.env.NEXT_PUBLIC_SITE_URL + '/partners/4.png'}
+                  alt={'partners'}
+                  width={130}
+                  height={56}
+                />
+                <Image
+                  src={process.env.NEXT_PUBLIC_SITE_URL + '/partners/5.png'}
+                  alt={'partners'}
+                  width={56}
+                  height={56}
+                />
+                <Image
+                  src={process.env.NEXT_PUBLIC_SITE_URL + '/partners/6.png'}
+                  alt={'partners'}
+                  width={154}
+                  height={56}
+                />
               </div>
             );
           },
