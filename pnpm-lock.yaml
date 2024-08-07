@@ -52,8 +52,8 @@ importers:
         specifier: ^9.0.6
         version: 9.0.6
       '@zapal/payload-lexical-react':
-        specifier: ^1.3.1
-        version: 1.3.1(lexical@0.16.1)(react@19.0.0-rc-512b09b2-20240718)
+        specifier: ^1.3.2
+        version: 1.3.2(lexical@0.16.1)(react@19.0.0-rc-512b09b2-20240718)
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -1878,8 +1878,8 @@ packages:
   '@ungap/structured-clone@1.2.0':
     resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
 
-  '@zapal/payload-lexical-react@1.3.1':
-    resolution: {integrity: sha512-mfyBFO3/cZimByfAg6g0yMML2wHIZMJ9bh1urwZXv8Pdq8SE9Z3BPAk2FVZ1tFmNNnHcAWcJTtvTsJBRoCa8PA==}
+  '@zapal/payload-lexical-react@1.3.2':
+    resolution: {integrity: sha512-BNsBqksusTCj9Qft/R92RaxLXL+SqujXbEcwP7Alvsl660DK8YmJebPrH9kc5m8lZ8A0yvFRIE+utp/kZTR/RA==}
     peerDependencies:
       lexical: ^0.16.0
       react: ^19 || >19.0.0-rc
@@ -7127,7 +7127,7 @@ snapshots:
 
   '@ungap/structured-clone@1.2.0': {}
 
-  '@zapal/payload-lexical-react@1.3.1(lexical@0.16.1)(react@19.0.0-rc-512b09b2-20240718)':
+  '@zapal/payload-lexical-react@1.3.2(lexical@0.16.1)(react@19.0.0-rc-512b09b2-20240718)':
     dependencies:
       lexical: 0.16.1
       react: 19.0.0-rc-512b09b2-20240718
