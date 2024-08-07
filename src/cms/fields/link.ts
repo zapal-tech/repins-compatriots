@@ -39,7 +39,7 @@ export const link: LinkField = ({ appearances, disableLabel = false, ...override
         type: 'row',
         fields: [
           {
-            name: 'type',
+            name: 'linkType',
             type: 'radio',
             options: [
               {
@@ -113,7 +113,7 @@ export const link: LinkField = ({ appearances, disableLabel = false, ...override
       required: true,
       maxDepth: 1,
       admin: {
-        condition: (_, siblingData) => siblingData?.type === LinkType.Internal,
+        condition: (_, siblingData) => siblingData?.linkType === LinkType.Internal,
         width: '40%',
       },
     },
@@ -126,7 +126,7 @@ export const link: LinkField = ({ appearances, disableLabel = false, ...override
       type: 'text',
       required: true,
       admin: {
-        condition: (_, siblingData) => siblingData?.type === LinkType.Custom,
+        condition: (_, siblingData) => siblingData?.linkType === LinkType.Custom,
         width: '40%',
       },
     },

@@ -18,7 +18,7 @@ export const Hero: React.FC<Page['hero']> = ({ media, richText, type }) => {
         className={clsx(
           'relative',
           HeroTypeLarge === type && 'xl:h-[calc(100vh-79px)]',
-          HeroTypeMedium === type && 'min-h-64 xl:h-[calc(100vh-79px)]',
+          HeroTypeMedium === type && 'min-h-[27rem] xl:h-[calc(100vh-79px)]',
         )}
       >
         {[HeroType.Large, HeroType.Medium].includes(type as HeroType) && media && typeof media === 'object' ? (
@@ -26,7 +26,7 @@ export const Hero: React.FC<Page['hero']> = ({ media, richText, type }) => {
             className="size-full overflow-hidden"
             imgClassName={clsx(
               'w-full',
-              type === HeroType.Large ? 'h-full object-cover' : 'min-h-64 object-cover',
+              type === HeroType.Large ? 'h-full object-cover' : 'min-h-[27rem] object-cover',
               type === HeroType.Medium && 'h-full object-cover',
             )}
             resource={media}
