@@ -240,7 +240,7 @@ const payloadConfig: Config = {
 
     const existingLastNames = await payload.find({ collection: Collection.LastNames, limit: 1 });
 
-    // if (existingLastNames.docs.length === 0) await seedFromGoogleSheets(payload);
+    if (existingLastNames.docs.length === 0) await seedFromGoogleSheets(payload);
   },
   telemetry: isDev,
   // graphQL: { schemaOutputFile: path.resolve(dirname, 'src', 'cms', 'graphql', 'generated-schema.graphql') },
