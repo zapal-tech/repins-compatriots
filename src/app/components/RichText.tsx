@@ -49,36 +49,42 @@ export const RichText: React.FC<
                   alt={'partners'}
                   width={190}
                   height={56}
+                  unoptimized
                 />
                 <Image
                   src={process.env.NEXT_PUBLIC_SITE_URL + '/partners/2.png'}
                   alt={'partners'}
                   width={140}
                   height={56}
+                  unoptimized
                 />
                 <Image
                   src={process.env.NEXT_PUBLIC_SITE_URL + '/partners/3.png'}
                   alt={'partners'}
                   width={114}
                   height={56}
+                  unoptimized
                 />
                 <Image
                   src={process.env.NEXT_PUBLIC_SITE_URL + '/partners/4.png'}
                   alt={'partners'}
                   width={130}
                   height={56}
+                  unoptimized
                 />
                 <Image
                   src={process.env.NEXT_PUBLIC_SITE_URL + '/partners/5.png'}
                   alt={'partners'}
                   width={56}
                   height={56}
+                  unoptimized
                 />
                 <Image
                   src={process.env.NEXT_PUBLIC_SITE_URL + '/partners/6.png'}
                   alt={'partners'}
                   width={154}
                   height={56}
+                  unoptimized
                 />
               </div>
             );
