@@ -82,6 +82,14 @@ export const baseEditorFeatures: FeatureProviderServer<any, any>[] = [
           },
         },
       },
+      {
+        name: 'arrow',
+        type: 'checkbox',
+        label: {
+          en: 'Arrow',
+          uk: 'Стрілка',
+        },
+      },
     ],
   }),
   // @ts-ignore
