@@ -20,7 +20,7 @@ export const CMSLink: React.FC<CMSLinkProps> = ({
   appearance = 'default',
   children,
   className,
-  label,
+  text,
   hrefLang,
   newTab,
   noFollow,
@@ -63,7 +63,7 @@ export const CMSLink: React.FC<CMSLinkProps> = ({
         rel={rel.join(' ')}
         target={newTab ? '_blank' : undefined}
       >
-        {label && label}
+        {text && text}
         {children && children}
       </Link>
     );
@@ -80,7 +80,7 @@ export const CMSLink: React.FC<CMSLinkProps> = ({
       noFollow={noFollow}
       onClick={onClick}
     >
-      {label && label}
+      {text && text}
       {children && children}
     </Button>
   );

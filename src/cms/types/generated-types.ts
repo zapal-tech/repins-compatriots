@@ -393,7 +393,7 @@ export interface Header {
         value: number | Page;
       } | null;
       url?: string | null;
-      label: string;
+      text: string;
     };
     id?: string | null;
   }[];
@@ -416,7 +416,7 @@ export interface Footer {
         value: number | Page;
       } | null;
       url?: string | null;
-      label: string;
+      text: string;
     };
     id?: string | null;
   }[];

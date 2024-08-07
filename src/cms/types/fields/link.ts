@@ -30,7 +30,7 @@ export type LinkData = {
   appearance?: LinkAppearance;
   newTab?: boolean;
   noFollow?: boolean;
-  label?: string | null;
+  text?: string | null;
   doc?: {
     relationTo: Collection | string;
     value: Page | number;

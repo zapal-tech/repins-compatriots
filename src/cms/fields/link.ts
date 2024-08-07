@@ -138,7 +138,7 @@ export const link: LinkField = ({ appearances, disableLabel = false, ...override
       fields: [
         ...linkTypes,
         {
-          name: 'label',
+          name: 'text',
           label: {
             en: 'Label',
             uk: 'Надпис',
