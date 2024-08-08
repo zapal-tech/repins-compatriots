@@ -45,7 +45,7 @@ export const DocumentTable: React.FC<DocumentTableProps> = ({ data, dict }) => {
         item[item.length - 1] = {
           ...item[item.length - 1],
           onClick: async () => {
-            router.push(await redirectToDocument(item[item.length - 1].id || ''));
+            if (window) window.open(await redirectToDocument(item[item.length - 1].id || ''), '_blank');
           },
         };
         return item;
