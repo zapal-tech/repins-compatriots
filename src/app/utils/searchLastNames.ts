@@ -162,6 +162,8 @@ export const getSQLSearchWhereQuery = async ({ lastName }: { lastName: string })
       arrayChar.push(`title ILIKE '%${item}%' OR original_last_name ILIKE '%${item}%'`);
     });
 
+  arrayChar.push(`title = '${lastName}' OR original_last_name = '${lastName}'`);
+
   const result = arrayChar.join(' OR ');
 
   return result;
@@ -185,7 +187,7 @@ export const searchLastNames = async ({ localApi, locale, lastName, page = 1 }: 
 
     const resSearchRels = await getSearch({ localApi, isDraftMode, locale, ids: idsSearch });
 
-    const ids = resSearchRels.map((item) => item.doc.value) as LastName['id'][];
+    const ids = resSearchRels.map((item) => item.id) as LastName['id'][];
 
     return await getLastNames({ localApi, isDraftMode, locale, ids, page });
   } catch (error) {}
