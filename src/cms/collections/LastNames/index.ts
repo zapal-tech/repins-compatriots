@@ -6,6 +6,7 @@ import { allAdminAccess, anyAdminAdminUIAccess, rootAccess, rootAndAdminAdminUIA
 
 import { allAdminAndUserAccess } from '../Users/access';
 
+import { SendEmailFeedback } from './endpoints/send-email-feedback';
 import { SendEmailHelpRead } from './endpoints/send-email-help-read';
 
 export const LastNames: CollectionConfig = {
@@ -27,6 +28,11 @@ export const LastNames: CollectionConfig = {
       path: '/send-email-help-read',
       method: 'post',
       handler: SendEmailHelpRead,
+    },
+    {
+      path: '/send-email-feedback',
+      method: 'post',
+      handler: SendEmailFeedback,
     },
   ],
   fields: [
