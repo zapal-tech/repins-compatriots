@@ -3,14 +3,16 @@ import { BasePayload } from 'payload';
 
 import { checkExistRequiredFields } from './checks';
 import { formatDocNumber, formatPage } from './formatting';
-import { getExistArchive, getExistArchiveWithFund, getExistTown } from './getExistData';
+import { getExistArchive, getExistArchiveWithFund, getExistDocuments, getExistTown } from './getExistData';
 import { insertDB } from './insertDB';
-import { DocFormatType, DocType, ExistListType } from './types';
+import { CreateDataType, DocFormatType, DocType, ExistListType } from './types';
 
 export const seedFromGoogleSheets = async (payload: BasePayload) => {
   let existTown: ExistListType = await getExistTown(payload);
   let existArchive: ExistListType = await getExistArchive(payload);
   let existArchiveWithFund: ExistListType = await getExistArchiveWithFund(payload);
+  let existDocument: ExistListType = await getExistDocuments(payload);
+  let listCreateData: CreateDataType = { lastName: [], document: [] };
 
   try {
     const doc = new GoogleSpreadsheet('1mm8NuJrO1jZzXxh-zgMEnRIUwbJp03M26qHkabYjavY', {
@@ -19,12 +21,12 @@ export const seedFromGoogleSheets = async (payload: BasePayload) => {
 
     await doc.loadInfo(); // loads document properties and worksheets
 
-    payload.logger.info(doc.title);
+    // payload.logger.info(doc.title);
 
     for (let sheetsIdx = 0; sheetsIdx < doc.sheetCount; sheetsIdx++) {
       const sheet = doc.sheetsByIndex[sheetsIdx];
 
-      payload.logger.info(sheet.title);
+      // payload.logger.info(sheet.title);
 
       await sheet.loadCells(`A3:Q${sheet.rowCount}`); // loads a range of cells
 
@@ -63,14 +65,29 @@ export const seedFromGoogleSheets = async (payload: BasePayload) => {
 
         row.documentNumber = formatDocNumber(row.documentNumber, row.men, row.women);
 
-        const result = await insertDB(row, payload, existTown, existArchive, existArchiveWithFund);
+        const result = await insertDB(
+          row,
+          payload,
+          existTown,
+          existArchive,
+          existArchiveWithFund,
+          existDocument,
+          listCreateData,
+        );
 
         existTown = result.existTown;
         existArchive = result.existArchive;
         existArchiveWithFund = result.existArchiveWithFund;
+        existDocument = result.existDocument;
+        listCreateData = result.listCreateData;
 
-        payload.logger.info(result.status === 'success' ? 'Success' : 'Error');
+        // payload.logger.info(result.status === 'success' ? 'Success' : 'Error');
       }
+      // await payload.create({
+      //   collection: Collection.LastNames,
+      //   data: listCreateData.lastName,
+      // });
+      Promise.all(listCreateData.lastName);
     }
   } catch (error) {
     payload.logger.error(error);

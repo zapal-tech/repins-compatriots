@@ -3,7 +3,7 @@ import { BasePayload } from 'payload';
 import { Collection } from '@cms/types';
 import { Archive, Document, Fund, LastName, Town } from '@cms/types/generated-types';
 
-import { DocFormatType, ExistListType } from './types';
+import { CreateDataType, DocFormatType, ExistListType } from './types';
 
 export const insertDB = async (
   rowData: DocFormatType,
@@ -11,6 +11,8 @@ export const insertDB = async (
   existTown: ExistListType,
   existArchive: ExistListType,
   existArchiveWithFund: ExistListType,
+  existDocument: ExistListType,
+  listCreateData: CreateDataType,
 ) => {
   let townId: Town['id'] | null = null;
   let archiveId: Archive['id'] | null = null;
@@ -56,23 +58,29 @@ export const insertDB = async (
 
     // Document
     const docTitle = `${rowData.archive}_${rowData.fund}_${!!rowData.description ? rowData.description : '-'}_${rowData.case}_${rowData.page}${rowData.reverseSide ? 'зв' : ''}`;
-    const docData: Omit<Document, 'id' | 'updatedAt' | 'createdAt'> = {
-      archive: archiveId,
-      fund: fundId,
-      description: Number(rowData.description),
-      case: rowData.case.toString().trim(),
-      docName: rowData.docName?.toString().trim() as string,
-      page: Number(rowData.page),
-      reverseSide: !!rowData.reverseSide ? true : false,
-      publicComment: rowData.publicComment,
-      title: docTitle,
-    };
-    documentId = (
-      await payload.create({
-        collection: Collection.Documents,
-        data: docData,
-      })
-    ).id;
+    if (!!existDocument[docTitle]) {
+      documentId = Number(existDocument[docTitle]) as Document['id'];
+    } else {
+      const docData: Omit<Document, 'id' | 'updatedAt' | 'createdAt'> = {
+        archive: archiveId,
+        fund: fundId,
+        description: Number(rowData.description),
+        case: rowData.case.toString().trim(),
+        docName: rowData.docName?.toString().trim() as string,
+        page: Number(rowData.page),
+        reverseSide: !!rowData.reverseSide ? true : false,
+        publicComment: rowData.publicComment,
+        title: docTitle,
+      };
+      documentId = (
+        await payload.create({
+          collection: Collection.Documents,
+          data: docData,
+        })
+      ).id;
+
+      existDocument[docTitle] = documentId;
+    }
 
     // LastName
     const lastNameData: Omit<LastName, 'id' | 'updatedAt' | 'createdAt'> = {
@@ -86,14 +94,23 @@ export const insertDB = async (
       socialStatus: rowData.socialStatus as string,
       documentNumber: rowData.documentNumber?.toString(),
     };
-    await payload.create({
-      collection: Collection.LastNames,
-      data: lastNameData,
-    });
+    listCreateData.lastName.push(
+      payload.create({
+        collection: Collection.LastNames,
+        data: lastNameData,
+      }),
+    );
   } catch (e) {
     payload.logger.error(e);
     error = true;
   }
 
-  return { status: error ? 'error' : 'success', existTown, existArchive, existArchiveWithFund };
+  return {
+    status: error ? 'error' : 'success',
+    existTown,
+    existArchive,
+    existArchiveWithFund,
+    existDocument,
+    listCreateData,
+  };
 };

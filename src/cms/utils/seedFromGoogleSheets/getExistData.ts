@@ -58,3 +58,21 @@ export const getExistArchiveWithFund = async (payload: BasePayload) => {
 
   return {};
 };
+
+export const getExistDocuments = async (payload: BasePayload) => {
+  try {
+    const documents = (await payload.find({ collection: Collection.Documents })).docs;
+
+    const existDocument: ExistListType = {};
+
+    documents.forEach((document) => {
+      if (document.title) existDocument[document.title] = document.id;
+    });
+
+    return existDocument;
+  } catch (error) {
+    payload.logger.error(error);
+  }
+
+  return {};
+};

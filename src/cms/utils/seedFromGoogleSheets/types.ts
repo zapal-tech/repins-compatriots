@@ -1,4 +1,7 @@
 import { GoogleSpreadsheetCellErrorValue } from 'google-spreadsheet';
+import { BasePayload } from 'payload';
+
+import { Document, LastName } from '@cms/types/generated-types';
 
 export type DocFieldType = string | number | boolean | GoogleSpreadsheetCellErrorValue | null;
 
@@ -47,3 +50,9 @@ export type DocFormatType = {
 };
 
 export type ExistListType = Record<string, string | number>;
+
+export type CreateDataType = {
+  document: Document[];
+  // lastName: Omit<LastName, 'id' | 'createdAt' | 'updatedAt'>[];
+  lastName: any[];
+};
