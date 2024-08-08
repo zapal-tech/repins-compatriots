@@ -48,4 +48,18 @@ export default {
       },
     },
   },
+  feedback: {
+    form: {
+      firstName: "Ім'я",
+      email: 'Email',
+      link: 'Посилання',
+      comment: 'Повідомлення',
+      submit: 'Відправити',
+      message: {
+        sending: 'Відправляємо...',
+        error: 'Щось пішло не так. Спробуйте ще раз пізніше',
+        done: 'Запит успішно відправлено',
+      },
+    },
+  },
 } as const;

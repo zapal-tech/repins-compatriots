@@ -1,3 +1,5 @@
+import { link } from 'fs';
+
 export default {
   footer: {
     navigation: 'Navigation:',
@@ -39,6 +41,20 @@ export default {
       lastName: 'Lirst name',
       phone: 'Phone',
       email: 'Email',
+      comment: 'Comment',
+      submit: 'Send',
+      message: {
+        sending: 'Sending...',
+        error: 'Something went wrong. Try again later',
+        done: 'Request sent successfully',
+      },
+    },
+  },
+  feedback: {
+    form: {
+      firstName: 'First name',
+      email: 'Email',
+      link: 'Link',
       comment: 'Comment',
       submit: 'Send',
       message: {

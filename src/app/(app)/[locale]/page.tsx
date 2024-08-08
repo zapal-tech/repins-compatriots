@@ -63,7 +63,7 @@ const Home = async ({ params: { locale } }: HomeProps) => {
       <Hero {...home.hero} />
       <PageGutter>
         <Gutter>
-          <RichText>{home.content}</RichText>
+          <RichText locale={locale}>{home.content}</RichText>
         </Gutter>
       </PageGutter>
     </>

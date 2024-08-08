@@ -1,7 +1,9 @@
-import { lexicalEditor } from '@payloadcms/richtext-lexical';
+import { BlocksFeature, lexicalEditor } from '@payloadcms/richtext-lexical';
 import { Block, RichTextAdapterProvider, RichTextField } from 'payload';
 
 import { baseEditorFeatures, baseHeadingFeature } from '@cms/editor';
+
+import { feedbackFormBlock } from './feedbackForm';
 
 export const columnNamePrefix = 'columnContent';
 
@@ -102,7 +104,12 @@ export const columnsBlock: Block = {
     ...[1, 2, 3, 4].map<RichTextField>((columnOrder) => ({
       type: 'richText',
       editor: lexicalEditor({
-        features: ({ defaultFeatures }) => [...defaultFeatures, ...baseEditorFeatures, baseHeadingFeature],
+        features: ({ defaultFeatures }) => [
+          ...defaultFeatures,
+          ...baseEditorFeatures,
+          baseHeadingFeature,
+          BlocksFeature({ blocks: [feedbackFormBlock] }),
+        ],
       }) as unknown as RichTextAdapterProvider<{}, any, any>,
       name: `${columnNamePrefix}${columnOrder}`,
       label: {

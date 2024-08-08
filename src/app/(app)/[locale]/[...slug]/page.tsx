@@ -68,7 +68,7 @@ const Page = async ({ params: { slug, locale } }: PageProps) => {
 
       <PageGutter>
         <Gutter>
-          <RichText>{page.content}</RichText>
+          <RichText locale={locale}>{page.content}</RichText>
         </Gutter>
       </PageGutter>
     </>
