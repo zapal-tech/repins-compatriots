@@ -38,7 +38,7 @@ const getLastNames = async ({
       locale,
       depth: 4,
       page: Number(page),
-      limit: 12,
+      limit: 50,
     })
   ).docs;
 
@@ -173,13 +173,15 @@ export const searchLastNames = async ({ localApi, locale, lastName, page = 1 }: 
   const { isEnabled: isDraftMode } = draftMode();
 
   try {
+    const orderBy = `LEVENSHTEIN(title, '${sql.raw(lastName)}'), LEVENSHTEIN(original_last_name, '${sql.raw(lastName)}') ASC`;
     const resSearch = (await localApi.db.drizzle
       .select()
       .from(localApi.db.tables.search)
       .where(
         // sql`SIMILARITY(title,'${sql.raw(lastName)}') > 0.1 or SIMILARITY(original_last_name,'${sql.raw(lastName)}') > 0.1`,
         sql.raw(`${await getSQLSearchWhereQuery({ lastName })}`),
-      )) as DocToSync[];
+      )
+      .orderBy(sql`${orderBy}`)) as DocToSync[];
 
     if (!resSearch.length) return [];
 
@@ -187,7 +189,9 @@ export const searchLastNames = async ({ localApi, locale, lastName, page = 1 }: 
 
     const resSearchRels = await getSearch({ localApi, isDraftMode, locale, ids: idsSearch });
 
-    const ids = resSearchRels.map((item) => item.id) as LastName['id'][];
+    const ids = resSearchRels
+      .map((item) => (!!item.doc ? item.doc.value : null))
+      .filter((item) => !!item) as LastName['id'][];
 
     return await getLastNames({ localApi, isDraftMode, locale, ids, page });
   } catch (error) {}
