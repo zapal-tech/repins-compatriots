@@ -5,7 +5,7 @@ const policies = {
   'style-src': ["'self'", "'unsafe-inline'", 'https://cdn.jsdelivr.net/npm/monaco-editor@0.43.0/'],
   'img-src': ["'self'", 'data:', process.env.NEXT_PUBLIC_CDN_URL, 'https://www.gravatar.com'],
   'font-src': ["'self'", 'data:', 'https://cdn.jsdelivr.net/npm/monaco-editor@0.43.0/'],
-  'frame-src': ["'self'"],
+  'frame-src': ["'self'", 'https://www.youtube-nocookie.com'],
   'connect-src': ["'self'"],
   'worker-src': ["'self'"],
 };

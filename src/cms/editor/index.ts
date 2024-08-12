@@ -25,9 +25,11 @@ import { link } from '@cms/fields/link';
 import { Collection } from '@cms/types';
 import { LinkAppearance } from '@cms/types/fields/link';
 
+import { backgroundImageBlock } from './blocks/backgroundImage';
 import { columnsBlock } from './blocks/columns';
 import { feedbackFormBlock } from './blocks/feedbackForm';
 import { partnersBlock } from './blocks/partners';
+import { youtubeBlock } from './blocks/youtube';
 
 export const baseHeadingFeature = HeadingFeature({
   enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4', 'h5'],
@@ -103,7 +105,7 @@ export const editor = lexicalEditor({
   features: [
     ...baseEditorFeatures,
     baseHeadingFeature,
-    BlocksFeature({ blocks: [columnsBlock, partnersBlock, feedbackFormBlock] }),
+    BlocksFeature({ blocks: [columnsBlock, partnersBlock, feedbackFormBlock, youtubeBlock, backgroundImageBlock] }),
   ],
 }) as unknown as RichTextAdapterProvider<{}, any, any>;
 

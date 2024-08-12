@@ -123,6 +123,71 @@ export const RichText: React.FC<
               </div>
             );
           },
+          youtube: ({ fields }: any = {}) => {
+            return (
+              <div className="aspect-video">
+                {fields?.youtubeId && (
+                  <iframe
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                    src={`https://www.youtube-nocookie.com/embed/${fields?.youtubeId}?modestbranding=1&amp;rel=0`}
+                    title="YouTube video player"
+                    width="100%"
+                    height="100%"
+                    className="h-full w-full border-0"
+                  />
+                )}
+              </div>
+            );
+          },
+          backgroundImage: ({ fields }: any = {}) => {
+            return (
+              <div
+                className={clsx(
+                  'block h-max w-full bg-cover bg-center px-6 py-6 md:px-8 md:py-10',
+                  fields?.textColor === 'white' && 'text-gray-50',
+                )}
+                style={{
+                  backgroundImage: `url(${fields?.image?.url})`,
+                }}
+              >
+                {fields?.richText && (
+                  <LexicalRenderer
+                    blocks={{
+                      columns: ({ fields }: any = {}) => {
+                        const columnsSizes = (fields.size as string).split(' ');
+                        const gridSize = columnsSizes.reduce((acc, size) => acc + parseInt(size), 0);
+                        const columnsToRender = columnsSizes.length;
+
+                        const columns = Object.entries(fields as Record<string, any>)
+                          .filter(
+                            ([field]) =>
+                              field.startsWith(columnNamePrefix) &&
+                              parseInt(field[field.length - 1]) <= columnsToRender,
+                          )
+                          .map(([, value]) => value);
+
+                        return (
+                          <div className={`grid grid-cols-1 gap-x-5 gap-y-6 xl:grid-cols-${gridSize}`}>
+                            {columns.map((column, idx) => (
+                              <div
+                                key={`column-${idx}`}
+                                className={`xl:col-span-${columnsSizes[idx]} flex flex-col gap-6`}
+                              >
+                                <LexicalRenderer>{column}</LexicalRenderer>
+                              </div>
+                            ))}
+                          </div>
+                        );
+                      },
+                    }}
+                  >
+                    {fields?.richText}
+                  </LexicalRenderer>
+                )}
+              </div>
+            );
+          },
         }}
       >
         {children as PayloadLexicalReactContent}
