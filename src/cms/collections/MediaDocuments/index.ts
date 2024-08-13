@@ -5,7 +5,9 @@ import { AdminPanelGroup, Collection, CollectionLabel } from '@cms/types';
 import { allAdminAccess, anyAdminAdminUIAccess, rootAccess, rootAndAdminAdminUIAccess } from '@cms/access';
 import { defaultPhotoMimeTypes } from '@cms/utils/mimeTypes';
 
-import { allAdminAndUserAccess } from './Users/access';
+import { allAdminAndUserAccess } from '../Users/access';
+
+// import { afterChangeBindToDocument } from './hooks/afterChangeBindToDocument';
 
 export const MediaDocuments: CollectionConfig = {
   slug: Collection.MediaDocuments,
@@ -21,6 +23,9 @@ export const MediaDocuments: CollectionConfig = {
     read: allAdminAndUserAccess,
     update: rootAndAdminAdminUIAccess,
   },
+  // hooks: {
+  //   afterChange: [afterChangeBindToDocument],
+  // },
   upload: {
     formatOptions: { format: 'webp', options: { quality: 80 } },
     mimeTypes: defaultPhotoMimeTypes,
