@@ -148,7 +148,7 @@ export const RichText: React.FC<
                   fields?.textColor === 'white' && 'text-gray-50',
                 )}
                 style={{
-                  backgroundImage: `url(${fields?.image?.url})`,
+                  backgroundImage: `url('${fields?.image?.url}')`,
                 }}
               >
                 {fields?.richText && (
