@@ -62,4 +62,7 @@ export default {
       },
     },
   },
+  error: {
+    pageNotFound: 'Сторінку не знайдено',
+  },
 } as const;
