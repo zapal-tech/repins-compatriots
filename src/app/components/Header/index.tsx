@@ -11,6 +11,7 @@ import { Locale } from '@shared/i18n';
 
 import { CMSLink } from '../CMSLink';
 import { Gutter } from '../Gutter';
+import { Icon } from '../Icon';
 import { Logo } from '../Logo';
 import { Text } from '../Text';
 
@@ -69,30 +70,34 @@ export const Header: React.FC<HeaderProps> = async ({ locale }) => {
           <ul className="flex flex-col gap-y-4 xl:hidden">
             {settings.viberUrl && (
               <li>
-                <Text className="transition-colors hover:text-mallard">
-                  <Link href={settings.viberUrl}>Viber</Link>
-                </Text>
+                <Link href={settings.viberUrl} className="flex items-center gap-2">
+                  <Icon className="!h-5 !w-5" type="Viber" />
+                  <Text className="transition-colors hover:text-mallard">Viber</Text>
+                </Link>
               </li>
             )}
             {settings.whatsappUrl && (
               <li>
-                <Text className="transition-colors hover:text-mallard">
-                  <Link href={settings.whatsappUrl}>WhatsApp</Link>
-                </Text>
+                <Link href={settings.whatsappUrl} className="flex items-center gap-2">
+                  <Icon className="!h-5 !w-5" type="Whatsapp" />
+                  <Text className="transition-colors hover:text-mallard">WhatsApp</Text>
+                </Link>
               </li>
             )}
             {settings.instagramUrl && (
               <li>
-                <Text className="transition-colors hover:text-mallard">
-                  <Link href={settings.instagramUrl}>Instagram</Link>
-                </Text>
+                <Link href={settings.instagramUrl} className="flex items-center gap-2">
+                  <Icon className="!h-5 !w-5" type="Instagram" />
+                  <Text className="transition-colors hover:text-mallard">Instagram</Text>
+                </Link>
               </li>
             )}
             {settings.facebookUrl && (
               <li>
-                <Text className="transition-colors hover:text-mallard">
-                  <Link href={settings.facebookUrl}>Facebook</Link>
-                </Text>
+                <Link href={settings.facebookUrl} className="flex items-center gap-2">
+                  <Icon className="!h-5 !w-5" type="Facebook" />
+                  <Text className="transition-colors hover:text-mallard">Facebook</Text>
+                </Link>
               </li>
             )}
           </ul>

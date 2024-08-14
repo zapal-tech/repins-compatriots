@@ -13,6 +13,7 @@ import { Locale } from '@shared/i18n';
 
 import { CMSLink } from './CMSLink';
 import { GridWithGutter } from './GridWithGutter';
+import { Icon } from './Icon';
 import { Logo } from './Logo';
 
 export type FooterProps = {
@@ -92,7 +93,8 @@ export const Footer: React.FC<FooterProps> = async ({ locale }) => {
           <ul className="col-span-full flex flex-col gap-5">
             {settings.viberUrl && (
               <li>
-                <Link className="flex gap-px" href={settings.viberUrl}>
+                <Link className="flex items-center gap-2" href={settings.viberUrl}>
+                  <Icon type="Viber" />
                   <Text size="sm">Viber</Text>
                 </Link>
               </li>
@@ -100,7 +102,8 @@ export const Footer: React.FC<FooterProps> = async ({ locale }) => {
 
             {settings.whatsappUrl && (
               <li>
-                <Link className="flex gap-px" href={settings.whatsappUrl}>
+                <Link className="flex items-center gap-2" href={settings.whatsappUrl}>
+                  <Icon type="Whatsapp" />
                   <Text size="sm">Whatsapp</Text>
                 </Link>
               </li>
@@ -108,7 +111,8 @@ export const Footer: React.FC<FooterProps> = async ({ locale }) => {
 
             {settings.instagramUrl && (
               <li>
-                <Link className="flex gap-px" href={settings.instagramUrl}>
+                <Link className="flex items-center gap-2" href={settings.instagramUrl}>
+                  <Icon type="Instagram" />
                   <Text size="sm">Instagram</Text>
                 </Link>
               </li>
@@ -116,7 +120,8 @@ export const Footer: React.FC<FooterProps> = async ({ locale }) => {
 
             {settings.facebookUrl && (
               <li>
-                <Link className="flex gap-px" href={settings.facebookUrl}>
+                <Link className="flex items-center gap-2" href={settings.facebookUrl}>
+                  <Icon type="Facebook" />
                   <Text size="sm">Facebook</Text>
                 </Link>
               </li>
