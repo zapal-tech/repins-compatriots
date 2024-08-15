@@ -1,11 +1,16 @@
-import { CollectionAfterChangeHook } from 'payload';
+import { CollectionAfterChangeHook, commitTransaction } from 'payload';
 
 import { Collection } from '@cms/types';
 
-import { Locale } from '@shared/i18n';
-
-export const afterChangeBindToDocument: CollectionAfterChangeHook = async ({ doc, operation, req: { payload } }) => {
+export const afterChangeBindToDocument: CollectionAfterChangeHook = async ({
+  doc,
+  operation,
+  req,
+  req: { payload },
+}) => {
   if (operation !== 'create') return doc;
+
+  await commitTransaction(req);
 
   let documentTitleEnd: string =
     Number(
@@ -17,29 +22,28 @@ export const afterChangeBindToDocument: CollectionAfterChangeHook = async ({ doc
 
   const documentTitle = doc.filename.split('.')[0].split('_').slice(0, -1).join('_') + '_' + documentTitleEnd;
 
-  payload.logger.info(`documentTitle: ${documentTitle}`);
-
   const documentFind = (
     await payload.find({
       collection: Collection.Documents,
       where: { title: { equals: documentTitle } },
       limit: 1,
+      depth: 0,
     })
-  ).docs;
+  ).docs?.[0];
 
-  if (documentFind.length) {
-    try {
-      await payload.update({
-        collection: Collection.Documents,
-        id: documentFind[0].id,
-        data: {
-          media: doc.id,
-        },
-        locale: Locale.Ukrainian,
-      });
-    } catch (e) {
-      payload.logger.error(e);
-    }
+  if (!documentFind) return doc;
+
+  try {
+    await payload.update({
+      collection: Collection.Documents,
+      id: documentFind.id,
+      overrideAccess: true,
+      data: {
+        media: doc.id,
+      },
+    });
+  } catch (e) {
+    payload.logger.error(e);
   }
 
   return doc;
