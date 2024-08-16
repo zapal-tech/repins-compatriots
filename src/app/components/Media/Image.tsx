@@ -1,3 +1,4 @@
+import { CSSProperties } from 'react';
 import clsx from 'clsx';
 import NextImage, { type StaticImageData } from 'next/image';
 
@@ -5,7 +6,7 @@ import { breakpoints } from '@shared/breakpoints';
 
 import type { Props as MediaProps } from './types';
 
-export const Image: React.FC<MediaProps> = (props) => {
+export const Image: React.FC<MediaProps & { style?: CSSProperties }> = (props) => {
   const {
     alt: altFromProps,
     fill,
@@ -15,6 +16,7 @@ export const Image: React.FC<MediaProps> = (props) => {
     priority,
     resource,
     src: srcFromProps,
+    style,
   } = props;
 
   let width: number | undefined;
@@ -49,6 +51,7 @@ export const Image: React.FC<MediaProps> = (props) => {
       src={src}
       width={!fill ? width : undefined}
       unoptimized
+      style={style}
     />
   );
 };

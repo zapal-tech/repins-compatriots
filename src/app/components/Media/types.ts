@@ -18,4 +18,5 @@ export interface Props {
   unoptimized?: boolean; // for NextImage only
   src?: StaticImageData; // for static media
   videoClassName?: string;
+  style?: React.CSSProperties;
 }

@@ -97,7 +97,57 @@ export const baseEditorFeatures: FeatureProviderServer<any, any>[] = [
     ],
   }),
   // @ts-ignore
-  UploadFeature(),
+  UploadFeature({
+    collections: {
+      [Collection.Media]: {
+        fields: [
+          {
+            type: 'number',
+            name: 'size',
+            label: {
+              en: 'Size (%)',
+              uk: 'Розмір (%)',
+            },
+            max: 100,
+            min: 25,
+            defaultValue: 100,
+          },
+          {
+            type: 'select',
+            name: 'position',
+            label: {
+              en: 'Position',
+              uk: 'Розташування',
+            },
+            defaultValue: 'center',
+            options: [
+              {
+                label: {
+                  en: 'Left',
+                  uk: 'Зліва',
+                },
+                value: 'left',
+              },
+              {
+                label: {
+                  en: 'Center',
+                  uk: 'По центру',
+                },
+                value: 'center',
+              },
+              {
+                label: {
+                  en: 'Right',
+                  uk: 'Справа',
+                },
+                value: 'right',
+              },
+            ],
+          },
+        ],
+      },
+    },
+  }),
   InlineToolbarFeature(),
 ];
 

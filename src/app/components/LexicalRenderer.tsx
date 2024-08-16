@@ -72,7 +72,22 @@ export const LexicalRenderer = <
         </CMSLink>
       ),
       autolink: ({ fields, children }) => <CMSLink {...(fields as any)}>{children}</CMSLink>,
-      upload: ({ value }) => <Media resource={value as unknown as MediaType} unoptimized />,
+      upload: ({ value, fields }) => {
+        if (!fields?.size || !fields?.position) return null;
+        const width = `${fields.size}%`;
+        const style = { width };
+        const formatting = fields.position === 'left' ? 'start' : fields.position === 'right' ? 'end' : 'center';
+
+        return (
+          <Media
+            resource={value as unknown as MediaType}
+            unoptimized
+            imgClassName="h-max"
+            className={`flex h-full justify-${formatting}`}
+            style={style}
+          />
+        );
+      },
     }}
     blocks={blocks}
   />
