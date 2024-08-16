@@ -20,18 +20,21 @@ type searchLastNameProps = {
 export const searchLastNames = async ({ localApi, locale, lastName, page = 1 }: searchLastNameProps) => {
   const { isEnabled: isDraftMode } = draftMode();
 
+  const limit = 300;
+
   try {
     const resSearch = (
       await localApi.db.drizzle.execute(
-        sql`select "id", "title" from (select "id", "title" from "search" where ${sql.raw(`${await getSQLSearchWhereQuery({ lastName })}`)} order by title ASC ) order by LEVENSHTEIN(title, '${sql.raw(lastName)}') ASC limit 50`,
+        sql`select "id", "title" from (select "id", "title" from "search" where ${sql.raw(`${await getSQLSearchWhereQuery({ lastName })}`)} order by title ASC ) order by LEVENSHTEIN(title, '${sql.raw(lastName)}') ASC limit ${sql.raw(limit.toString())}`,
       )
     ).rows as DocToSync[];
 
+    console.log(resSearch.length);
     if (!resSearch.length) return [];
 
     let idsSearch = resSearch.map((item) => item?.id) as Search['id'][];
 
-    const resSearchRels = (await getSearch({ localApi, isDraftMode, locale, ids: idsSearch })).sort(
+    const resSearchRels = (await getSearch({ localApi, isDraftMode, locale, ids: idsSearch, limit })).sort(
       (a, b) => idsSearch.indexOf(a.id) - idsSearch.indexOf(b.id),
     );
 
@@ -39,7 +42,7 @@ export const searchLastNames = async ({ localApi, locale, lastName, page = 1 }: 
       .map((item) => (!!item.doc ? item.doc.value : null))
       .filter((item) => !!item) as LastName['id'][];
 
-    return (await getLastNames({ localApi, isDraftMode, locale, ids, page })).sort(
+    return (await getLastNames({ localApi, isDraftMode, locale, ids, page, limit })).sort(
       (a, b) => ids.indexOf(a.id) - ids.indexOf(b.id),
     );
   } catch (error) {

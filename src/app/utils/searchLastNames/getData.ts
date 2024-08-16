@@ -11,12 +11,14 @@ export const getLastNames = async ({
   locale,
   ids,
   page,
+  limit = 50,
 }: {
   localApi: Payload;
   isDraftMode?: boolean;
   ids: LastName['id'][];
   locale: Locale;
   page: number;
+  limit?: number;
 }) =>
   (
     await localApi.find({
@@ -28,7 +30,7 @@ export const getLastNames = async ({
       locale,
       depth: 4,
       page: Number(page),
-      limit: 50,
+      limit: limit,
     })
   ).docs;
 
@@ -37,11 +39,13 @@ export const getSearch = async ({
   isDraftMode,
   locale,
   ids,
+  limit = 50,
 }: {
   localApi: Payload;
   isDraftMode?: boolean;
   locale: Locale;
   ids: Search['id'][];
+  limit?: number;
 }) =>
   (
     await localApi.find({
@@ -51,6 +55,6 @@ export const getSearch = async ({
         id: { in: ids },
       },
       locale,
-      limit: 50,
+      limit: limit,
     })
   ).docs;
