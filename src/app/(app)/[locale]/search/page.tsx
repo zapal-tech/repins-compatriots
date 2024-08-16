@@ -1,4 +1,3 @@
-import { draftMode } from 'next/headers';
 import Link from 'next/link';
 
 import { GroupData, groupDataByLastName } from '@app/utils/groupDataByLastName';
