@@ -73,7 +73,7 @@ export const LexicalRenderer = <
       ),
       autolink: ({ fields, children }) => <CMSLink {...(fields as any)}>{children}</CMSLink>,
       upload: ({ value, fields }) => {
-        if (!fields?.size || !fields?.position) return null;
+        if (!fields?.size || !fields?.position) return <Media resource={value as unknown as MediaType} unoptimized />;
         const width = `${fields.size}%`;
         const style = { width };
         const formatting = fields.position === 'left' ? 'start' : fields.position === 'right' ? 'end' : 'center';
