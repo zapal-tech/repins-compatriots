@@ -29,7 +29,6 @@ export const searchLastNames = async ({ localApi, locale, lastName, page = 1 }: 
       )
     ).rows as DocToSync[];
 
-    console.log(resSearch.length);
     if (!resSearch.length) return [];
 
     let idsSearch = resSearch.map((item) => item?.id) as Search['id'][];
