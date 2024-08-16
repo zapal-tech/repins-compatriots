@@ -17,7 +17,7 @@ export const RichText: React.FC<
 > = ({ children, className, invert, locale, ...props }) => (
   <div
     className={clsx(
-      'mx-auto flex w-full flex-col gap-y-16 xl:gap-y-24',
+      'mx-auto flex w-full flex-col gap-y-4 xl:gap-y-8',
       // invert && 'prose-invert',
       className,
     )}
@@ -146,7 +146,7 @@ export const RichText: React.FC<
               <div className={clsx('relative block h-max w-full', fields?.textColor === 'white' && 'text-gray-50')}>
                 <Media
                   resource={fields?.image}
-                  imgClassName="bg-cover"
+                  imgClassName="bg-cover w-dvw bg-repeat-y min-h-[500px] xl:min-h-0 "
                   className="absolute left-1/2 top-1/2 z-0 h-full w-dvw -translate-x-1/2 -translate-y-1/2
                     overflow-hidden"
                 />
