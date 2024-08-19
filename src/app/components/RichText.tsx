@@ -155,7 +155,7 @@ export const RichText: React.FC<
                   />
 
                   {fields?.richText && (
-                    <div className="relative z-0 select-none px-6 py-6 text-transparent md:px-8 md:py-10">
+                    <div className="relative -z-50 select-none px-6 py-6 text-transparent md:px-8 md:py-10">
                       <LexicalRenderer
                         blocks={{
                           columns: ({ fields }: any = {}) => {
