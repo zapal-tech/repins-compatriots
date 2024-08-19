@@ -59,21 +59,21 @@ const Home = async ({ params: { locale } }: HomeProps) => {
   if (!home) return notFound();
 
   return (
-    <>
+    <div className="overflow-hidden">
       <Hero {...home.hero} />
       <PageGutter>
         <Gutter>
           <RichText locale={locale}>{home.content}</RichText>
         </Gutter>
       </PageGutter>
-    </>
+    </div>
   );
 };
 
 export const generateStaticParams = (): HomeProps['params'][] => locales.map((locale) => ({ locale }));
 
 export const generateMetadata = async ({ params: { locale } }: HomeProps): Promise<Metadata> => {
-  if (!isSupportedLocale(locale)) return generateMeta({});
+  if (!isSupportedLocale(locale)) return generateMeta({ locale });
 
   const { isEnabled: isDraftMode } = draftMode();
 
@@ -87,7 +87,7 @@ export const generateMetadata = async ({ params: { locale } }: HomeProps): Promi
     console.error(error);
   }
 
-  return generateMeta({ doc: home });
+  return generateMeta({ doc: home, locale });
 };
 
 export default Home;

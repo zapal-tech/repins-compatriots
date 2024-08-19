@@ -63,7 +63,7 @@ const Page = async ({ params: { slug, locale } }: PageProps) => {
   if (!page) return notFound();
 
   return (
-    <>
+    <div className="overflow-hidden">
       <Hero {...page.hero} />
 
       <PageGutter>
@@ -71,7 +71,7 @@ const Page = async ({ params: { slug, locale } }: PageProps) => {
           <RichText locale={locale}>{page.content}</RichText>
         </Gutter>
       </PageGutter>
-    </>
+    </div>
   );
 };
 
@@ -110,7 +110,7 @@ export const generateStaticParams = async (): Promise<PageProps['params'][]> => 
 };
 
 export const generateMetadata = async ({ params: { locale, slug } }: PageProps): Promise<Metadata> => {
-  if (!isSupportedLocale(locale)) return generateMeta({});
+  if (!isSupportedLocale(locale)) return generateMeta({ locale });
 
   const { isEnabled: isDraftMode } = draftMode();
 
@@ -124,7 +124,7 @@ export const generateMetadata = async ({ params: { locale, slug } }: PageProps):
     console.error(error);
   }
 
-  return generateMeta({ doc: page });
+  return generateMeta({ doc: page, locale });
 };
 
 export default Page;

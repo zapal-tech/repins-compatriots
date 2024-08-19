@@ -142,14 +142,55 @@ export const RichText: React.FC<
             );
           },
           backgroundImage: ({ fields }: any = {}) => {
+            const minHeight = fields?.minHeight ? fields?.minHeight : true;
+            const fullScreen = fields?.fullScreen ? fields?.fullScreen : true;
+
             return (
               <div className={clsx('relative block h-max w-full', fields?.textColor === 'white' && 'text-gray-50')}>
-                <Media
-                  resource={fields?.image}
-                  imgClassName="bg-cover w-dvw bg-repeat-y min-h-[500px] xl:min-h-0 "
-                  className="absolute left-1/2 top-1/2 z-0 h-full w-dvw -translate-x-1/2 -translate-y-1/2
-                    overflow-hidden"
-                />
+                <div className="absolute left-1/2 h-full w-dvw -translate-x-1/2">
+                  <Media
+                    resource={fields?.image}
+                    imgClassName="bg-cover w-dvw bg-repeat-y h-full xl:min-h-0 object-cover"
+                    className="absolute top-1/2 z-0 h-full w-dvw -translate-y-1/2 overflow-hidden"
+                  />
+
+                  {fields?.richText && (
+                    <div className="relative z-0 select-none px-6 py-6 text-transparent md:px-8 md:py-10">
+                      <LexicalRenderer
+                        blocks={{
+                          columns: ({ fields }: any = {}) => {
+                            const columnsSizes = (fields.size as string).split(' ');
+                            const gridSize = columnsSizes.reduce((acc, size) => acc + parseInt(size), 0);
+                            const columnsToRender = columnsSizes.length;
+
+                            const columns = Object.entries(fields as Record<string, any>)
+                              .filter(
+                                ([field]) =>
+                                  field.startsWith(columnNamePrefix) &&
+                                  parseInt(field[field.length - 1]) <= columnsToRender,
+                              )
+                              .map(([, value]) => value);
+
+                            return (
+                              <div className={`grid grid-cols-1 gap-x-5 gap-y-6 xl:grid-cols-${gridSize}`}>
+                                {columns.map((column, idx) => (
+                                  <div
+                                    key={`column-${idx}`}
+                                    className={`xl:col-span-${columnsSizes[idx]} flex flex-col gap-6`}
+                                  >
+                                    <LexicalRenderer>{column}</LexicalRenderer>
+                                  </div>
+                                ))}
+                              </div>
+                            );
+                          },
+                        }}
+                      >
+                        {fields?.richText}
+                      </LexicalRenderer>
+                    </div>
+                  )}
+                </div>
 
                 {fields?.richText && (
                   <div className="relative z-10 px-6 py-6 md:px-8 md:py-10">

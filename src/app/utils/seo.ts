@@ -3,6 +3,8 @@ import type { Metadata } from 'next';
 
 import type { Page } from '@cms/types/generated-types';
 
+import { Locale } from '@shared/i18n';
+
 import { getPathFromSlugArr } from './slug';
 
 const defaultOpenGraph: Metadata['openGraph'] = {
@@ -19,7 +21,9 @@ const mergeOpenGraph = (og?: Metadata['openGraph']): Metadata['openGraph'] => ({
   images: og?.images ? og.images : defaultOpenGraph.images,
 });
 
-export const generateMeta = ({ doc }: { doc?: Partial<Page> | null }): Metadata => {
+const localeAppNames = (locale?: Locale) => (locale === Locale.Ukrainian ? 'Земляки Рєпіна' : appName);
+
+export const generateMeta = ({ doc, locale }: { doc?: Partial<Page> | null; locale?: Locale }): Metadata => {
   const ogImage =
     doc?.meta?.image &&
     typeof doc?.meta?.image === 'object' &&
@@ -28,10 +32,10 @@ export const generateMeta = ({ doc }: { doc?: Partial<Page> | null }): Metadata 
     doc.meta.image.url;
 
   return {
-    title: doc?.meta?.title || `${(doc as any)?.title ? `${(doc as any).title} | ` : ''}${appName}`,
+    title: doc?.meta?.title || `${(doc as any)?.title ? `${(doc as any).title} | ` : ''}${localeAppNames(locale)}`,
     description: doc?.meta?.description,
     openGraph: mergeOpenGraph({
-      title: doc?.meta?.title || appName,
+      title: doc?.meta?.title || localeAppNames(locale),
       description: doc?.meta?.description || undefined,
       url:
         process.env.NEXT_PUBLIC_SITE_URL +

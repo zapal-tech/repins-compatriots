@@ -31,6 +31,33 @@ export const backgroundImageBlock: Block = {
       relationTo: Collection.Media,
     },
     {
+      type: 'row',
+      fields: [
+        {
+          name: 'minHeight',
+          type: 'checkbox',
+          label: {
+            en: 'Minimum height',
+            uk: 'Мінімальна висота',
+          },
+          admin: {
+            width: '50%',
+          },
+        },
+        {
+          name: 'fullScreen',
+          type: 'checkbox',
+          label: {
+            en: 'Full screen',
+            uk: 'На весь екран',
+          },
+          admin: {
+            width: '50%',
+          },
+        },
+      ],
+    },
+    {
       type: 'richText',
       editor: lexicalEditor({
         features: ({ defaultFeatures }) => [
