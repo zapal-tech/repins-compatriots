@@ -7,13 +7,15 @@ import { LinkData, LinkType } from '@cms/types/fields/link';
 import { getLastFromArray } from '@shared/utils';
 
 import { Button } from './Button';
+import { HeaderLink } from './HeaderLink';
 
-type CMSLinkProps = LinkData & {
+export type CMSLinkProps = LinkData & {
   children?: React.ReactNode;
   className?: string;
   onClick?: React.EventHandler<any>;
   hrefLang?: string;
   ref?: React.Ref<HTMLAnchorElement | HTMLButtonElement>;
+  isHeaderLink?: boolean;
 };
 
 export const CMSLink: React.FC<CMSLinkProps> = ({
@@ -30,6 +32,7 @@ export const CMSLink: React.FC<CMSLinkProps> = ({
   url,
   ref,
   arrow,
+  isHeaderLink,
 }) => {
   let href = url;
 
@@ -53,6 +56,22 @@ export const CMSLink: React.FC<CMSLinkProps> = ({
 
     if (noFollow) rel.push('nofollow');
     if (newTab) rel.push('noopener', 'noreferrer');
+
+    if (isHeaderLink)
+      return (
+        <HeaderLink
+          ref={ref as React.Ref<HTMLAnchorElement>}
+          className={clsx(className)}
+          href={href}
+          hrefLang={hrefLang}
+          onClick={onClick}
+          rel={rel.join(' ')}
+          target={newTab ? '_blank' : undefined}
+        >
+          {text && text}
+          {children && children}
+        </HeaderLink>
+      );
 
     return (
       <Link

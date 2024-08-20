@@ -59,7 +59,7 @@ export const Header: React.FC<HeaderProps> = async ({ locale }) => {
             {header.navItems.map(({ id, link }) => (
               <li key={id}>
                 <Text className="transition-colors hover:text-mallard">
-                  <CMSLink {...link} />
+                  <CMSLink {...link} isHeaderLink />
                 </Text>
               </li>
             ))}
