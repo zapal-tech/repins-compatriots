@@ -96,7 +96,12 @@ export const CMSLink: React.FC<CMSLinkProps> = ({
       type="link"
       ref={ref as React.Ref<HTMLButtonElement>}
       style={appearance}
-      className={clsx('inline-block h-max w-full px-8 py-4', !fullWidth && 'md:w-max', className)}
+      className={clsx(
+        'inline-block h-max w-full',
+        appearance !== 'blue' && 'px-8 py-4',
+        !fullWidth && 'md:w-max',
+        className,
+      )}
       href={href}
       newTab={newTab}
       noFollow={noFollow}
