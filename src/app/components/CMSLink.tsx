@@ -16,6 +16,7 @@ export type CMSLinkProps = LinkData & {
   hrefLang?: string;
   ref?: React.Ref<HTMLAnchorElement | HTMLButtonElement>;
   isHeaderLink?: boolean;
+  fullWidth?: boolean;
 };
 
 export const CMSLink: React.FC<CMSLinkProps> = ({
@@ -32,6 +33,7 @@ export const CMSLink: React.FC<CMSLinkProps> = ({
   url,
   ref,
   arrow,
+  fullWidth,
   isHeaderLink,
 }) => {
   let href = url;
@@ -94,12 +96,13 @@ export const CMSLink: React.FC<CMSLinkProps> = ({
       type="link"
       ref={ref as React.Ref<HTMLButtonElement>}
       style={appearance}
-      className={clsx('inline-block h-max w-full px-8 py-4 md:w-max', className)}
+      className={clsx('inline-block h-max w-full px-8 py-4', !fullWidth && 'md:w-max', className)}
       href={href}
       newTab={newTab}
       noFollow={noFollow}
       onClick={onClick}
       arrow={arrow}
+      fullWidth={fullWidth}
     >
       {text && text}
       {children && children}
