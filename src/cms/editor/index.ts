@@ -78,7 +78,7 @@ export const baseEditorFeatures: FeatureProviderServer<any, any>[] = [
         },
         type: 'select',
         defaultValue: 'default' as LinkAppearance,
-        options: ['default', 'default with border', 'primary', 'primary light', 'secondary'],
+        options: ['default', 'blue', 'blue with border', 'primary', 'primary light', 'secondary'],
         admin: {
           description: {
             en: 'Choose how the link should be rendered.',

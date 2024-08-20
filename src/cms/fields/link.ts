@@ -27,19 +27,26 @@ export const appearanceOptions: Record<LinkAppearance, LinkAppearanceOption> = {
     },
     value: 'default',
   },
-  'default with border': {
+  blue: {
     label: {
-      en: 'Default link with border',
-      uk: 'Звичайне посилання з рамкою',
+      en: 'Blue link',
+      uk: 'Синє посилання',
     },
-    value: 'default',
+    value: 'blue',
+  },
+  'blue with border': {
+    label: {
+      en: 'Blue link with border',
+      uk: 'Синє посилання з рамкою',
+    },
+    value: 'blue with border',
   },
   'primary light': {
     label: {
       en: 'Primary light Button',
       uk: 'Основна освітлена кнопка',
     },
-    value: 'default',
+    value: 'primary light',
   },
 };
 

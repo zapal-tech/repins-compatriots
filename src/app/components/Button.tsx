@@ -6,7 +6,7 @@ import Link from 'next/link';
 export type ButtonProps = {
   type?: 'button' | 'submit' | 'reset' | 'link';
   size?: 'small' | 'default';
-  style?: 'primary' | 'secondary' | 'default with border' | 'primary light';
+  style?: 'primary' | 'secondary' | 'blue with border' | 'primary light' | 'blue';
   href?: string | UrlObject;
   newTab?: boolean;
   noFollow?: boolean;
@@ -61,7 +61,8 @@ export const Button: React.FC<ButtonProps> = ({
         {
           ['bg-mallard text-gray-50']: style === 'primary',
           ['border border-mallard bg-transparent text-mallard']: style === 'secondary',
-          ['border border-sky bg-transparent text-sky']: style === 'default with border',
+          ['text-sky']: style === 'blue',
+          ['border border-sky bg-transparent text-sky']: style === 'blue with border',
           ['bg-lemongrass text-mallard']: style === 'primary light',
         },
         className,
@@ -80,7 +81,7 @@ export const Button: React.FC<ButtonProps> = ({
               className={clsx({
                 ['fill-gray-50']: style === 'primary',
                 ['fill-mallard']: style === 'secondary' || style === 'primary light',
-                ['fill-sky']: style === 'default with border',
+                ['fill-sky']: style === 'blue with border' || style === 'blue',
               })}
             />
           </svg>
