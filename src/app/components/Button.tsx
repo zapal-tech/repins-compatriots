@@ -53,8 +53,9 @@ export const Button: React.FC<ButtonProps> = ({
       // @ts-expect-error
       ref={ref}
       className={clsx(
-        'cursor-pointer rounded-full px-4 font-sans text-lg font-normal xl:text-lg-desktop',
+        'cursor-pointer rounded-full font-sans text-lg font-normal xl:text-lg-desktop',
         fullWidth && 'w-full',
+        style !== 'blue' && 'px-4',
         {
           ['h-12']: size === 'default',
         },
