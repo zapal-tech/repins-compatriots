@@ -27,6 +27,20 @@ export const appearanceOptions: Record<LinkAppearance, LinkAppearanceOption> = {
     },
     value: 'default',
   },
+  'default with border': {
+    label: {
+      en: 'Default link with border',
+      uk: 'Звичайне посилання з рамкою',
+    },
+    value: 'default',
+  },
+  'primary light': {
+    label: {
+      en: 'Primary light Button',
+      uk: 'Основна освітлена кнопка',
+    },
+    value: 'default',
+  },
 };
 
 export const link: LinkField = ({ appearances, disableLabel = false, ...overrides } = {}) => {

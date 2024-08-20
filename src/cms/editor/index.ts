@@ -78,7 +78,7 @@ export const baseEditorFeatures: FeatureProviderServer<any, any>[] = [
         },
         type: 'select',
         defaultValue: 'default' as LinkAppearance,
-        options: ['default', 'primary', 'secondary'],
+        options: ['default', 'default with border', 'primary', 'primary light', 'secondary'],
         admin: {
           description: {
             en: 'Choose how the link should be rendered.',
@@ -93,6 +93,15 @@ export const baseEditorFeatures: FeatureProviderServer<any, any>[] = [
           en: 'Arrow',
           uk: 'Стрілка',
         },
+      },
+      {
+        name: 'fullWidth',
+        type: 'checkbox',
+        label: {
+          en: 'Full width',
+          uk: 'На всю ширину',
+        },
+        defaultValue: false,
       },
     ],
   }),

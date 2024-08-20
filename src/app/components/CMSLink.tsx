@@ -57,7 +57,7 @@ export const CMSLink: React.FC<CMSLinkProps> = ({
     return (
       <Link
         ref={ref as React.Ref<HTMLAnchorElement>}
-        className={className}
+        className={clsx(className, 'text-sky')}
         href={href}
         hrefLang={hrefLang}
         onClick={onClick}
