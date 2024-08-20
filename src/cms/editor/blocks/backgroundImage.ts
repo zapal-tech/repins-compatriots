@@ -1,6 +1,8 @@
 import { BlocksFeature, lexicalEditor } from '@payloadcms/richtext-lexical';
 import { Block, RichTextAdapterProvider, RichTextField } from 'payload';
 
+import { richText } from '@cms/fields';
+
 import { Collection } from '@cms/types';
 
 import { baseEditorFeatures, baseHeadingFeature } from '@cms/editor';
@@ -40,6 +42,7 @@ export const backgroundImageBlock: Block = {
             en: 'Minimum height',
             uk: 'Мінімальна висота',
           },
+          defaultValue: true,
           admin: {
             width: '50%',
           },
@@ -51,6 +54,7 @@ export const backgroundImageBlock: Block = {
             en: 'Full screen',
             uk: 'На весь екран',
           },
+          defaultValue: true,
           admin: {
             width: '50%',
           },
@@ -86,6 +90,19 @@ export const backgroundImageBlock: Block = {
         uk: 'Колір тексту',
       },
       defaultValue: 'black',
+    },
+    {
+      name: 'richTextPosition',
+      type: 'select',
+      options: [
+        { value: 'top', label: { en: 'Top', uk: 'Зверху' } },
+        { value: 'down', label: { en: 'Down', uk: 'Знизу' } },
+      ],
+      defaultValue: 'top',
+      label: {
+        en: 'Text Position',
+        uk: 'Позиція тексту',
+      },
     },
   ],
 };
