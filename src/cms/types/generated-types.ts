@@ -77,7 +77,7 @@ export interface Media {
   focalX?: number | null;
   focalY?: number | null;
   sizes?: {
-    size_400?: {
+    size_800?: {
       url?: string | null;
       width?: number | null;
       height?: number | null;
@@ -85,7 +85,7 @@ export interface Media {
       filesize?: number | null;
       filename?: string | null;
     };
-    size_1280?: {
+    size_1920?: {
       url?: string | null;
       width?: number | null;
       height?: number | null;

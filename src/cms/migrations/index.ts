@@ -14,6 +14,7 @@ import * as migration_20240807_113416_Document_media_upload from './20240807_113
 import * as migration_20240807_152406_RichText_link from './20240807_152406_RichText_link';
 import * as migration_20240812_170051_Document_fix_media_payload_beta77 from './20240812_170051_Document_fix_media_payload_beta77';
 import * as migration_20240821_082649_hero_eclipse from './20240821_082649_hero_eclipse';
+import * as migration_20240821_113009_fix_media_image_sizes from './20240821_113009_fix_media_image_sizes';
 
 export const migrations = [
   {
@@ -95,5 +96,10 @@ export const migrations = [
     up: migration_20240821_082649_hero_eclipse.up,
     down: migration_20240821_082649_hero_eclipse.down,
     name: '20240821_082649_hero_eclipse',
+  },
+  {
+    up: migration_20240821_113009_fix_media_image_sizes.up,
+    down: migration_20240821_113009_fix_media_image_sizes.down,
+    name: '20240821_113009_fix_media_image_sizes',
   },
 ];

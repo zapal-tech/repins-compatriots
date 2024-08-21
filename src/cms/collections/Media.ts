@@ -21,17 +21,17 @@ export const Media: CollectionConfig = {
     update: rootAndAdminAdminUIAccess,
   },
   upload: {
-    formatOptions: { format: 'webp', options: { quality: 80 } },
+    formatOptions: { format: 'webp', options: { quality: 95 } },
     mimeTypes: [...defaultGraphicsMimeTypes, 'application/pdf'],
     imageSizes: [
       {
-        name: 'size_400',
-        width: 400,
+        name: 'size_800',
+        width: 800,
         formatOptions: { format: 'webp', options: { quality: 80 } },
       },
       {
-        name: 'size_1280',
-        width: 1280,
+        name: 'size_1920',
+        width: 1920,
         formatOptions: { format: 'webp', options: { quality: 80 } },
       },
     ],
@@ -40,6 +40,10 @@ export const Media: CollectionConfig = {
     {
       name: 'alt',
       type: 'text',
+      label: {
+        en: 'Alternative text',
+        uk: 'Альтернативний текст',
+      },
       required: true,
     },
   ],
