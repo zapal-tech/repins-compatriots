@@ -30,7 +30,7 @@ export const HeaderLink: React.FC<HeaderLinkProps> = ({
   return (
     <Link
       ref={ref as React.Ref<HTMLAnchorElement>}
-      className={clsx(className, pathname === href && 'text-lemongrass')}
+      className={clsx(className, pathname.includes(href) && 'text-lemongrass')}
       href={href}
       hrefLang={hrefLang}
       onClick={onClick}
