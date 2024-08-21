@@ -1,3 +1,4 @@
+import { Metadata } from 'next';
 import Link from 'next/link';
 
 import { GroupData, groupDataByLastName } from '@app/utils/groupDataByLastName';
@@ -91,6 +92,12 @@ const Search = async ({ params: { locale }, searchParams: { search } }: SearchPr
       </Gutter>
     </PageGutter>
   );
+};
+
+export const generateMetadata = async ({ params: { locale } }: SearchProps): Promise<Metadata> => {
+  return {
+    title: locale === Locale.English ? "Search | Repin's Compatriots" : 'Пошук | Земляки Рєпіна',
+  };
 };
 
 export default Search;

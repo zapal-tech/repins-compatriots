@@ -1,3 +1,4 @@
+import { Metadata } from 'next';
 import { draftMode } from 'next/headers';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -123,6 +124,12 @@ const CheckDoc = async ({ params: { locale }, searchParams: { token } }: CheckDo
       </Gutter>
     </PageGutter>
   );
+};
+
+export const generateMetadata = async ({ params: { locale } }: CheckDocProps): Promise<Metadata> => {
+  return {
+    title: locale === Locale.English ? "Search | Repin's Compatriots" : 'Пошук | Земляки Рєпіна',
+  };
 };
 
 export default CheckDoc;
