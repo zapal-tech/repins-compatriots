@@ -70,5 +70,48 @@ export const hero = (): Field => ({
         condition: (_, { type } = {}) => [HeroType.Large, HeroType.Medium].includes(type),
       },
     },
+    {
+      type: 'row',
+      fields: [
+        {
+          name: 'eclipseType',
+          type: 'select',
+          options: [
+            { value: 'full', label: { en: 'Full', uk: 'Повне' } },
+            { value: 'gradient', label: { en: 'Gradient to top', uk: 'Градієнт до верху' } },
+            { value: 'none', label: { en: 'None', uk: 'Немає' } },
+          ],
+          label: {
+            en: 'Eclipse type',
+            uk: 'Тип затемнення',
+          },
+          defaultValue: 'none',
+          admin: {
+            condition: (_, { type } = {}) => [HeroType.Large, HeroType.Medium].includes(type),
+            width: '50%',
+          },
+        },
+        {
+          name: 'eclipseOpacity',
+          type: 'select',
+          options: [
+            { value: '100', label: '100%' },
+            { value: '80', label: '80%' },
+            { value: '70', label: '70%' },
+            { value: '60', label: '60%' },
+          ],
+          label: {
+            en: 'Eclipse opacity',
+            uk: 'Прозорість затемнення',
+          },
+          defaultValue: '100',
+          admin: {
+            condition: (_, { type, eclipseType } = {}) =>
+              [HeroType.Large, HeroType.Medium].includes(type) && eclipseType === 'gradient',
+            width: '50%',
+          },
+        },
+      ],
+    },
   ],
 });

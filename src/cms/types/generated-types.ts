@@ -142,6 +142,8 @@ export interface Page {
       [k: string]: unknown;
     } | null;
     media?: number | Media | null;
+    eclipseType?: ('full' | 'gradient' | 'none') | null;
+    eclipseOpacity?: ('100' | '80' | '70' | '60') | null;
   };
   content?: {
     root: {
