@@ -15,8 +15,8 @@ export const seedFromGoogleSheets = async (payload: BasePayload) => {
   let listCreateData: CreateDataType = { lastName: [], document: [] };
 
   try {
-    const doc = new GoogleSpreadsheet('1mm8NuJrO1jZzXxh-zgMEnRIUwbJp03M26qHkabYjavY', {
-      apiKey: 'AIzaSyC1gxP_LwOv-7i1wkzDGzvGMMAilJNLOKI',
+    const doc = new GoogleSpreadsheet(process.env.SHEET_ID || '', {
+      apiKey: process.env.SHEET_API_KEY || '',
     });
 
     await doc.loadInfo(); // loads document properties and worksheets

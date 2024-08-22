@@ -30,7 +30,7 @@ const nextConfig = {
           value: ContentSecurityPolicy,
         },
       ],
-      source: '/(.*)',
+      source: '/((?!admin).*)',
     });
 
     return headers;

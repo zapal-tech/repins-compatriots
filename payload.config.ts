@@ -2,9 +2,6 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { en } from 'payload/i18n/en';
 import { uk } from 'payload/i18n/uk';
-import { postgresAdapter } from '@payloadcms/db-postgres';
-import { nodemailerAdapter } from '@payloadcms/email-nodemailer';
-import { resendAdapter } from '@payloadcms/email-resend';
 // import { formBuilderPlugin } from '@payloadcms/plugin-form-builder';
 import { nestedDocsPlugin } from '@payloadcms/plugin-nested-docs';
 import { redirectsPlugin } from '@payloadcms/plugin-redirects';
@@ -27,9 +24,6 @@ import { Towns } from '@cms/collections/Towns';
 import { Users } from '@cms/collections/Users';
 
 import { Footer, Header, Settings } from '@cms/globals';
-
-import { Logo } from '@cms/components/Logo';
-import { NavLogo } from '@cms/components/NavLogo';
 
 import { AdminPanelGroup, Collection, CollectionLabel, UserRole } from '@cms/types';
 import { Page } from '@cms/types/generated-types';
@@ -55,21 +49,31 @@ const dirname = path.dirname(filename);
 const email = process.env.USER_EMAIL || 'hello@zapal.tech';
 const password = process.env.USER_PASSWORD || 'zapal';
 
-const emailAdapter = isDev
-  ? nodemailerAdapter({
-      defaultFromAddress: cmsSenderEmail,
-      defaultFromName: cmsSenderName,
-      transportOptions: {
-        host: process.env.SMTP_HOST,
-        port: Number(process.env.SMTP_PORT),
-        secure: false,
-      },
-    })
-  : resendAdapter({
-      defaultFromAddress: cmsSenderEmail,
-      defaultFromName: cmsSenderName,
-      apiKey: process.env.RESEND_API_KEY || '',
-    });
+const emailAdapter =
+  isDev && process.env.SMTP_HOST && process.env.SMTP_PORT
+    ? (await import('@payloadcms/email-nodemailer')).nodemailerAdapter({
+        defaultFromAddress: cmsSenderEmail,
+        defaultFromName: cmsSenderName,
+        transportOptions: {
+          host: process.env.SMTP_HOST,
+          port: Number(process.env.SMTP_PORT),
+          secure: false,
+        },
+      })
+    : (await import('@payloadcms/email-resend')).resendAdapter({
+        defaultFromAddress: cmsSenderEmail,
+        defaultFromName: cmsSenderName,
+        apiKey: process.env.RESEND_API_KEY || '',
+      });
+
+const dbAdapter = (
+  isDev
+    ? (await import('@payloadcms/db-postgres')).postgresAdapter
+    : (await import('@payloadcms/db-vercel-postgres')).vercelPostgresAdapter
+)({
+  pool: { connectionString: process.env.DATABASE_URL },
+  migrationDir: path.resolve(dirname, 'src', 'cms', 'migrations'),
+});
 
 const payloadConfig: Config = {
   serverURL: process.env.NEXT_PUBLIC_SITE_URL || '',
@@ -78,8 +82,8 @@ const payloadConfig: Config = {
     user: Collection.Users,
     components: {
       graphics: {
-        Icon: NavLogo,
-        Logo,
+        Icon: '@cms/components/NavLogo#NavLogo',
+        Logo: '@cms/components/Logo#Logo',
       },
     },
     dateFormat: 'dd.MM.yyyy HH:mm:ss',
@@ -107,10 +111,7 @@ const payloadConfig: Config = {
   cookiePrefix: tokenName,
   cors: [process.env.NEXT_PUBLIC_SITE_URL || ''].filter(Boolean),
   csrf: [process.env.NEXT_PUBLIC_SITE_URL || ''].filter(Boolean),
-  db: postgresAdapter({
-    pool: { connectionString: process.env.DATABASE_URL },
-    migrationDir: path.resolve(dirname, 'src', 'cms', 'migrations'),
-  }),
+  db: dbAdapter,
   editor,
   email: emailAdapter,
   i18n: {

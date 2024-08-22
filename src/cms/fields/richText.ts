@@ -1,8 +1,8 @@
-import { RichTextField, RichTextFieldProps } from 'payload';
+import { RichTextField } from 'payload';
 
 import { deepMerge } from '@shared/utils';
 
-export const richText = ({ name, ...overrides }: RichTextFieldProps<{}, any>): RichTextField =>
+export const richText = ({ name, ...overrides }: Omit<RichTextField<{}, any>, 'type'>): RichTextField =>
   deepMerge(
     {
       name,

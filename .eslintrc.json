@@ -2,6 +2,6 @@
   "extends": ["next/core-web-vitals", "plugin:prettier/recommended"],
   "plugins": ["eslint-plugin-react-compiler"],
   "rules": {
-    "react-compiler/react-compiler": "error"
+    "react-compiler/react-compiler": "warn"
   }
 }
