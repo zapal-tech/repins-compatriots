@@ -26,11 +26,12 @@ export const HeaderLink: React.FC<HeaderLinkProps> = ({
   rel,
 }) => {
   const pathname = usePathname();
+  const isSelect = pathname.split('/')[pathname.split('/').length - 1] === href.split('/')[href.split('/').length - 1];
 
   return (
     <Link
       ref={ref as React.Ref<HTMLAnchorElement>}
-      className={clsx(className, pathname.includes(href) && 'text-lemongrass')}
+      className={clsx(className, isSelect && 'text-lemongrass')}
       href={href}
       hrefLang={hrefLang}
       onClick={onClick}
