@@ -141,7 +141,7 @@ export interface Page {
       };
       [k: string]: unknown;
     } | null;
-    media?: (number | null) | Media;
+    media?: number | Media | null;
     eclipseType?: ('full' | 'gradient' | 'none') | null;
     eclipseOpacity?: ('100' | '80' | '70' | '60') | null;
   };
@@ -173,7 +173,7 @@ export interface Page {
   meta?: {
     title?: string | null;
     description?: string | null;
-    image?: (number | null) | OpenGraphImage;
+    image?: number | OpenGraphImage | null;
   };
   updatedAt: string;
   createdAt: string;
@@ -206,7 +206,7 @@ export interface User {
 export interface Document {
   id: number;
   title?: string | null;
-  media?: (number | null) | MediaDocument;
+  media?: number | MediaDocument | null;
   archive: number | Archive;
   fund?: (number | null) | Fund;
   description?: number | null;

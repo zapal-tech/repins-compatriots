@@ -66,14 +66,19 @@ const emailAdapter =
         apiKey: process.env.RESEND_API_KEY || '',
       });
 
-const dbAdapter = (
-  isDev
-    ? (await import('@payloadcms/db-postgres')).postgresAdapter
-    : (await import('@payloadcms/db-vercel-postgres')).vercelPostgresAdapter
-)({
+const dbAdapter = (await import('@payloadcms/db-postgres')).postgresAdapter({
   pool: { connectionString: process.env.DATABASE_URL },
   migrationDir: path.resolve(dirname, 'src', 'cms', 'migrations'),
 });
+
+// const dbAdapter = (
+//   isDev
+//     ? (await import('@payloadcms/db-postgres')).postgresAdapter
+//     : (await import('@payloadcms/db-vercel-postgres')).vercelPostgresAdapter
+// )({
+//   pool: { connectionString: process.env.DATABASE_URL },
+//   migrationDir: path.resolve(dirname, 'src', 'cms', 'migrations'),
+// });
 
 const payloadConfig: Config = {
   serverURL: process.env.NEXT_PUBLIC_SITE_URL || '',
