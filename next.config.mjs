@@ -30,7 +30,8 @@ const nextConfig = {
           value: ContentSecurityPolicy,
         },
       ],
-      source: '/((?!admin).*)',
+      // source: '/((?!admin).*)',
+      source: '/(.*)',
     });
 
     return headers;
@@ -48,8 +49,8 @@ const nextConfig = {
   },
 };
 
-const nextConfigWithPayload = withPayload(nextConfig);
+// const nextConfigWithPayload = withPayload(nextConfig);
 
-nextConfigWithPayload.experimental.reactCompiler = false;
+// nextConfigWithPayload.experimental.reactCompiler = false;
 
-export default nextConfigWithPayload;
+export default withPayload(nextConfig);

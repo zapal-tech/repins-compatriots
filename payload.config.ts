@@ -25,6 +25,9 @@ import { Users } from '@cms/collections/Users';
 
 import { Footer, Header, Settings } from '@cms/globals';
 
+import { Logo } from '@cms/components/Logo';
+import { NavLogo } from '@cms/components/NavLogo';
+
 import { AdminPanelGroup, Collection, CollectionLabel, UserRole } from '@cms/types';
 import { Page } from '@cms/types/generated-types';
 
@@ -87,8 +90,8 @@ const payloadConfig: Config = {
     user: Collection.Users,
     components: {
       graphics: {
-        Icon: '@cms/components/NavLogo#NavLogo',
-        Logo: '@cms/components/Logo#Logo',
+        Icon: NavLogo,
+        Logo,
       },
     },
     dateFormat: 'dd.MM.yyyy HH:mm:ss',
