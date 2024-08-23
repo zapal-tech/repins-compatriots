@@ -48,4 +48,8 @@ const nextConfig = {
   },
 };
 
-export default withPayload(nextConfig);
+const nextConfigWithPayload = withPayload(nextConfig);
+
+nextConfigWithPayload.experimental.reactCompiler = false;
+
+export default nextConfigWithPayload;
