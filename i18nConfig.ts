@@ -5,6 +5,7 @@ const i18nConfig = {
   defaultLocale,
   localeCookie: 'LOCALE',
   prefixDefault: undefined,
+  localeDetector: false,
 } as const;
 
 export default i18nConfig;
