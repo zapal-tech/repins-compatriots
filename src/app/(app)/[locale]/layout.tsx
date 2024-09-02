@@ -3,6 +3,7 @@ import font from 'next/font/local';
 
 import '@app/styles/globals.css';
 
+import { GoogleAnalytics } from '@next/third-parties/google';
 import clsx from 'clsx';
 
 import { Footer } from '@app/components/Footer';
@@ -58,6 +59,7 @@ const RootLayout = ({ children, params: { locale } }: RootLayoutProps) => (
       <Header locale={locale} />
       {children}
       <Footer locale={locale} />
+      <GoogleAnalytics gaId="G-SRZQ6QK012" />
     </body>
   </html>
 );
