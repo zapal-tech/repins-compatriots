@@ -9,13 +9,14 @@ import { Header as HeaderType, Settings } from '@cms/types/generated-types';
 
 import { Locale } from '@shared/i18n';
 
-import { CMSLink } from '../CMSLink';
+// import { CMSLink } from '../CMSLink';
 import { Gutter } from '../Gutter';
 import { Icon } from '../Icon';
 import { Logo } from '../Logo';
 import { Text } from '../Text';
 
 import { LanguageSwitcher } from './LanguageSwitcher';
+import { MenuItem } from './MenuItem';
 import { MobileMenuButton } from './MobileMenuButton';
 
 type HeaderProps = {
@@ -58,9 +59,7 @@ export const Header: React.FC<HeaderProps> = async ({ locale }) => {
           <ul className="flex flex-col gap-x-8 gap-y-4 xl:flex-row">
             {header.navItems.map(({ id, link }) => (
               <li key={id}>
-                <Text className="transition-colors hover:text-mallard">
-                  <CMSLink {...link} isHeaderLink />
-                </Text>
+                <MenuItem link={link} />
               </li>
             ))}
           </ul>

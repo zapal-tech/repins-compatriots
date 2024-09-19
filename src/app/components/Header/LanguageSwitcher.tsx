@@ -2,6 +2,8 @@
 
 import { usePathname, useRouter } from 'next/navigation';
 
+import { mobileMenuToggleId } from '@app/constants';
+
 import { defaultLocale, Locale } from '@shared/i18n';
 
 import { LanguageSwitcherButton } from './LanguageSwitcherButton';
@@ -31,6 +33,8 @@ export const LanguageSwitcher: React.FC<{ activeLocale?: Locale }> = ({ activeLo
     } else {
       router.push(currentPathname.replace(`/${activeLocale}`, `/${locale}`));
     }
+    const mobileMenuToggle = document.getElementById(mobileMenuToggleId) as HTMLInputElement | null;
+    if (mobileMenuToggle?.checked) mobileMenuToggle.click();
 
     router.refresh();
   };
